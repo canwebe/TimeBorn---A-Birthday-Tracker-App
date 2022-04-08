@@ -1,0 +1,12 @@
+.menu {
+  font-size: 1.5rem;
+  /* background-color: #eaeaea; */
+  width: 100%;
+  padding: 12px 0 12px 20px;
+  font-weight: 600;
+}
+
+.active {
+  border-right: 4px solid #ff6b6b;
+  color: #ff6b6b;
+}

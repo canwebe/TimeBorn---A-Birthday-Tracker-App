@@ -1,0 +1,60 @@
+/* Modals */
+.modal {
+  min-height: 300px;
+  width: 90%;
+  background-color: whitesmoke;
+  z-index: 99;
+  border-radius: 7px;
+  position: relative;
+  padding: 60px 25px 45px;
+  box-shadow: 0 3px 19px rgba(0, 0, 0, 0.282);
+}
+
+.backDrop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.582);
+}
+
+.cross {
+  font-size: 2.7rem;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.heading {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.input {
+  padding: 9px 15px;
+  font-size: 1.4rem;
+  border: 1px solid black;
+  border-radius: 7px;
+  width: 100%;
+}
+
+.btn {
+  background-color: #3255e1;
+  color: aliceblue;
+  padding: 10px 5px;
+  width: 180px;
+  border-radius: 7px;
+}

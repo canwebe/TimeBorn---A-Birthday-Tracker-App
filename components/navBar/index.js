@@ -1,0 +1,58 @@
+import { MdClear, MdOutlineMenu } from 'react-icons/md'
+import { useState } from 'react'
+import Image from 'next/image'
+import styles from './navBar.module.css'
+import cls from 'classnames'
+import { useAuth } from '../../contexts/authContext'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import NavLink from '../navLink'
+
+export default function NavBar() {
+  const { user, handleSignOut } = useAuth()
+  const [isOpen, setIsOpen] = useState(false)
+  const router = useRouter()
+  return (
+    <>
+      <nav>
+        {console.log(user)}
+        <div className={cls('wrapper', styles.nav)}>
+          <MdOutlineMenu
+            className={styles.menu}
+            onClick={() => setIsOpen(true)}
+          />
+
+          <div className={styles.avatarImg}>
+            {user && (
+              <Image
+                alt='avatar image'
+                width='20px'
+                height='20px'
+                layout='responsive'
+                className={styles.img}
+                src={user?.photoURL}
+              />
+            )}
+          </div>
+        </div>
+      </nav>
+      {isOpen && (
+        <div className={styles.sideBar}>
+          <div className={styles.topLogoWrapper}>
+            <h1 className={styles.mainLogo}>TimeBorn</h1>
+            <MdClear className={styles.menu} onClick={() => setIsOpen(false)} />
+          </div>
+          <div className={styles.menuList}>
+            <NavLink href='/'>Home</NavLink>
+            <NavLink href='/search'>Search</NavLink>
+            <NavLink href='/calender'>Calender</NavLink>
+            <NavLink href='/profile'>MyProfile</NavLink>
+          </div>
+          <div onClick={handleSignOut} className={styles.logOut}>
+            Sign Out
+          </div>
+        </div>
+      )}
+    </>
+  )
+}

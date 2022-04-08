@@ -1,7 +1,28 @@
 import '../styles/globals.css'
+import { useRouter } from 'next/router'
+import { AuthContextProvider } from '../contexts/authContext'
+import AuthWrapper from '../components/authWrapper'
+import NavBar from '../components/navBar'
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  const router = useRouter()
+  const noAuth = ['/login']
+  return (
+    <AuthContextProvider>
+      {noAuth.includes(router.pathname) ? (
+        <Component {...pageProps} />
+      ) : (
+        <>
+          <NavBar />
+          <main>
+            <AuthWrapper>
+              <Component {...pageProps} />
+            </AuthWrapper>
+          </main>
+        </>
+      )}
+    </AuthContextProvider>
+  )
 }
 
 export default MyApp
