@@ -1,4 +1,4 @@
-import { MdOutlineClose } from 'react-icons/Md'
+import { MdOutlineClose } from 'react-icons/md'
 import cls from 'classnames'
 import styles from './modal.module.css'
 import { useState } from 'react'
