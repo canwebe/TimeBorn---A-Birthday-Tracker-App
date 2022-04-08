@@ -1,12 +1,10 @@
 import '../styles/globals.css'
 import { useRouter } from 'next/router'
-import AuthContext, { AuthContextProvider } from '../contexts/authContext'
-import useAuthListner from '../hooks/useAuthListner'
-import ProtectedRoute from '../components/protectedRoute'
-import AuthWrapper from '../components/protectedRoute/authWrapper'
+import { AuthContextProvider } from '../contexts/authContext'
+import AuthWrapper from '../components/authWrapper'
+import NavBar from '../components/navBar'
 
 function MyApp({ Component, pageProps }) {
-  // const { user, isLoading } = useAuthListner()
   const router = useRouter()
   const noAuth = ['/login']
   return (
@@ -14,9 +12,14 @@ function MyApp({ Component, pageProps }) {
       {noAuth.includes(router.pathname) ? (
         <Component {...pageProps} />
       ) : (
-        <AuthWrapper>
-          <Component {...pageProps} />
-        </AuthWrapper>
+        <>
+          <NavBar />
+          <main>
+            <AuthWrapper>
+              <Component {...pageProps} />
+            </AuthWrapper>
+          </main>
+        </>
       )}
     </AuthContextProvider>
   )

@@ -1,9 +1,6 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 a {
@@ -13,4 +10,41 @@ a {
 
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+.wrapper {
+  width: 90%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+img {
+  width: 100%;
+}
+body {
+  background-color: #90d098;
+  color: #000551;
+}
+
+main {
+  margin-top: 20px;
+  min-height: 100%;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  font-size: 1.3rem;
+}
+
+p {
+  font-size: 1.3rem;
 }
