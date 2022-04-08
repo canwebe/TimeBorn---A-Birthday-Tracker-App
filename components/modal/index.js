@@ -6,11 +6,16 @@ import { months } from './data'
 
 export default function Modal({ setIsModal }) {
   const [name, setName] = useState('')
-  const [day, setDay] = useState(1)
-  const [month, setMonth] = useState(1)
+  const [day, setDay] = useState('0')
+  const [month, setMonth] = useState('1')
   const [dob, setDob] = useState(new Date())
 
-  const day30 = ['2', '4', '6', '9', '11']
+  const day30 = ['1', '3', '5', '8', '10']
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(name, day, month)
+  }
 
   return (
     <div className={styles.backDrop}>
@@ -20,7 +25,7 @@ export default function Modal({ setIsModal }) {
           className={styles.cross}
         />
         <h1 className={styles.heading}>Add Your Friend</h1>
-        <form className={styles.form}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <input
             className={styles.input}
             value={name}
@@ -40,32 +45,44 @@ export default function Modal({ setIsModal }) {
             name='dob'
             required
           /> */}
-          <select onChange={(e) => setMonth(e.target.value)} name='month'>
-            {months.map((item, i) => (
-              <option key={i} value={i}>
-                {item}
-              </option>
-            ))}
-          </select>
-          <select
-            name='day'
-            onChange={(e) => setDay(e.target.value)}
-            value={day}
-          >
-            {[
-              ...Array(day30.includes(month) ? (month === '2' ? 29 : 30) : 31),
-            ].map((item, i) => (
-              <option key={i} value={i + 1}>
-                {i + 1}
-              </option>
-            ))}
-          </select>
 
+          <div className={styles.selectDiv}>
+            <select
+              className={styles.selectMonth}
+              onChange={(e) => setMonth(e.target.value)}
+              name='month'
+              required
+            >
+              <option value=''>Select Month</option>
+              {months.map((item, i) => (
+                <option key={i} value={i}>
+                  {item}
+                </option>
+              ))}
+            </select>
+            <select
+              required
+              className={styles.selectDay}
+              name='day'
+              onChange={(e) => setDay(e.target.value)}
+              value={day}
+            >
+              <option value='0'>Day</option>
+              {[
+                ...Array(
+                  day30.includes(month) ? (month === '1' ? 29 : 30) : 31
+                ),
+              ].map((item, i) => (
+                <option key={i} value={i + 1}>
+                  {i + 1}
+                </option>
+              ))}
+            </select>
+          </div>
           <button className={styles.btn} type='submit'>
             Add Details
           </button>
         </form>
-        <p>{JSON.stringify(dob)}</p>
       </div>
     </div>
   )
