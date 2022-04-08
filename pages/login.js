@@ -8,17 +8,18 @@ import styles from '../styles/Login.module.css'
 import { FcGoogle } from 'react-icons/fc'
 
 export default function Login() {
+  const { user } = useAuth()
+  const router = useRouter()
+
   const handleSignin = () => {
     signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        console.log(result.user)
+      .then(() => {
+        router.push('/')
       })
       .catch((err) => {
         console.log('Something went wrong', err)
       })
   }
-  const { user } = useAuth()
-  const router = useRouter()
 
   useEffect(() => {
     if (user) {
