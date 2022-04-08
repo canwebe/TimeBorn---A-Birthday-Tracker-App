@@ -2,7 +2,7 @@
 .modal {
   min-height: 300px;
   width: 90%;
-  background-color: whitesmoke;
+  background-color: var(--color-green);
   z-index: 99;
   border-radius: 7px;
   position: relative;
@@ -45,7 +45,7 @@
 
 .input {
   padding: 9px 15px;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   border: 1px solid black;
   border-radius: 7px;
   width: 100%;

@@ -25,11 +25,13 @@
 .button {
   background-color: #ffffff;
   display: flex;
+  justify-content: center;
   gap: 7px;
   align-items: center;
   font-size: 1.2rem;
   margin-top: 30px;
-  padding: 10px 25px;
+  padding: 10px 5px;
+  width: 250px;
   border-radius: 30px;
   box-shadow: 2px 4px 16px -2px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease-in-out;

@@ -1,3 +1,11 @@
+:root {
+  --color-orange: #ff6b6b;
+  --color-green: #6bcb77;
+  --color-blue-primary: #3255e1;
+  --color-blue-secondary: #4d96ff;
+  --color-yellow: #ffd93d;
+}
+
 html,
 body {
   font-family: 'Nunito', sans-serif;
