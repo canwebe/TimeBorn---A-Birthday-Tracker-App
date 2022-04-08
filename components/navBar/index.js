@@ -43,10 +43,18 @@ export default function NavBar() {
             <MdClear className={styles.menu} onClick={() => setIsOpen(false)} />
           </div>
           <div className={styles.menuList}>
-            <NavLink href='/'>Home</NavLink>
-            <NavLink href='/search'>Search</NavLink>
-            <NavLink href='/calender'>Calender</NavLink>
-            <NavLink href='/profile'>MyProfile</NavLink>
+            <NavLink setIsOpen={setIsOpen} href='/'>
+              Home
+            </NavLink>
+            <NavLink setIsOpen={setIsOpen} href='/search'>
+              Search
+            </NavLink>
+            <NavLink setIsOpen={setIsOpen} href='/calender'>
+              Calender
+            </NavLink>
+            <NavLink setIsOpen={setIsOpen} href='/profile'>
+              MyProfile
+            </NavLink>
           </div>
           <div onClick={handleSignOut} className={styles.logOut}>
             Sign Out

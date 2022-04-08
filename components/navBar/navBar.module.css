@@ -37,7 +37,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 18px 10px 18px 15px;
-  background-color: #6bcb77;
+  color: white;
+  /* background-color: #6bcb77; */
+  background-color: var(--color-orange);
 }
 
 /* .mainLogo {
@@ -57,8 +59,9 @@
   width: 80%;
   text-align: center;
   padding: 9px 5px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: white;
-  background-color: #3255e1;
+  /* background-color: #3255e1; */
+  background-color: var(--color-orange);
   border-radius: 5px;
 }
