@@ -38,7 +38,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
   margin-top: 20px;
   align-items: center;
 }
@@ -57,4 +57,26 @@
   padding: 10px 5px;
   width: 180px;
   border-radius: 7px;
+  margin-top: 10px;
+}
+
+.selectDiv {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.selectMonth,
+.selectDay {
+  padding: 9px 15px;
+  border-radius: 7px;
+  border: 1px solid black;
+  font-size: 1.1rem;
+}
+
+.selectMonth {
+  width: 64%;
+}
+.selectDay {
+  width: 34%;
 }

@@ -13,3 +13,15 @@
   color: white;
   box-shadow: 2px 3px 18px rgba(0, 0, 0, 0.3);
 }
+
+.flexWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 5px 10px;
+}
+
+.flexItem {
+  box-shadow: 2px 3px 19px rgba(0, 0, 0, 0.3);
+  padding: 18px;
+}
