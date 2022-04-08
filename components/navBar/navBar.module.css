@@ -22,7 +22,7 @@
 
 .sideBar {
   background-color: whitesmoke;
-  height: 100vh;
+  height: 100%;
   width: 70vw;
   position: fixed;
   display: flex;

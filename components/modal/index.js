@@ -7,14 +7,8 @@ export default function Modal({ setIsModal }) {
   const [name, setName] = useState('')
   const [dob, setDob] = useState('')
 
-  const handleClick = (e) => {
-    if (e.target.classList.contains('backDrop')) {
-      setIsModal(false)
-    }
-  }
-
   return (
-    <div onClick={handleClick} className={cls('backDrop', styles.backDrop)}>
+    <div className={styles.backDrop}>
       <div className={styles.modal}>
         <MdOutlineClose
           onClick={() => setIsModal(false)}
@@ -25,16 +19,18 @@ export default function Modal({ setIsModal }) {
           <input
             className={styles.input}
             value={name}
-            onChange={() => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             type='text'
+            autoFocus
             name='name'
             placeholder='Enter Name'
             required
+            autoComplete='false'
           />
           <input
             value={dob}
             className={styles.input}
-            onChange={() => setDob(e.target.value)}
+            onChange={(e) => setDob(e.target.value)}
             type='date'
             name='dob'
             required
