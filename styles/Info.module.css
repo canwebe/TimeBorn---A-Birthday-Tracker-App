@@ -1,0 +1,53 @@
+.infoPage {
+  padding: 77px 0px;
+}
+
+.infoBox {
+  padding: 15px 20px;
+  border-left: 10px solid var(--color-orange);
+  background-color: #94b498;
+}
+
+.name {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.deleteBtn {
+  background-color: rgb(197, 24, 24);
+  color: white;
+  padding: 6px 15px 6px 10px;
+  border-radius: 9px;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border-bottom: 2.3px solid rgb(130, 5, 5);
+  transition: all 0.3s ease-in-out;
+}
+
+.deleteBtn:active {
+  background-color: rgb(159, 27, 27);
+}
+
+.backBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  background-color: var(--color-orange);
+  padding: 7px 20px 7px 10px;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 1.3rem;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: 2px 3px 18px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s;
+}
+
+.backBtn:active {
+  background-color: #e35757;
+}
