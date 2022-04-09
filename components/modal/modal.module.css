@@ -4,7 +4,7 @@
   width: 90%;
   /* background-color: var(--color-green); */
   background-color: aliceblue;
-  z-index: 99;
+  z-index: 999;
   border-radius: 7px;
   position: relative;
   padding: 60px 25px 45px;
@@ -20,6 +20,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 998;
   backdrop-filter: blur(2px);
   background-color: rgba(0, 0, 0, 0.582);
 }
@@ -59,6 +60,15 @@
   width: 180px;
   border-radius: 7px;
   margin-top: 10px;
+  border-bottom: 2.5px solid #0101ab;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:active {
+  background-color: #1b3dc2;
+}
+.btn:hover {
+  transform: translateY(2px);
 }
 
 .selectDiv {
@@ -80,4 +90,11 @@
 }
 .selectDay {
   width: 34%;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin: 9px 0 0px;
+  font-size: 1.1rem;
 }

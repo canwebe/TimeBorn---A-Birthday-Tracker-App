@@ -14,7 +14,7 @@ export default function NavBar() {
   const router = useRouter()
   return (
     <>
-      <nav>
+      <nav className={styles.navWrapper}>
         {console.log(user)}
         <div className={cls('wrapper', styles.nav)}>
           <MdOutlineMenu

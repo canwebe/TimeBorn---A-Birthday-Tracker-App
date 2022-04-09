@@ -4,6 +4,7 @@
   --color-blue-primary: #3255e1;
   --color-blue-secondary: #4d96ff;
   --color-yellow: #ffd93d;
+  --color-body: #90d098;
 }
 
 html,
@@ -36,7 +37,7 @@ img {
   width: 100%;
 }
 body {
-  background-color: #90d098;
+  background-color: var(--color-body);
   color: #000551;
 }
 

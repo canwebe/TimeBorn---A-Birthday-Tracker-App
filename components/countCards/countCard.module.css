@@ -23,7 +23,8 @@
   text-transform: capitalize;
   font-weight: 600;
   font-size: 1.4rem;
-  margin: 6px 0 1px;
+  margin: 6px 0 3px;
+  line-height: 26px;
 }
 .birthday {
   opacity: 0.6;

@@ -49,4 +49,9 @@ export const example = [
     date: '10',
     month: '3',
   },
+  {
+    name: 'Bishwa Pratap Chowdhary Aditi Padukon',
+    date: '10',
+    month: '9',
+  },
 ]
