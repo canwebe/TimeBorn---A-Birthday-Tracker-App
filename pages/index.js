@@ -19,8 +19,12 @@ const Home = () => {
   const router = useRouter()
   const [isModal, setIsModal] = useState(false)
   // const [data, setData] = useState([])
-  const [orgData, setOrgData] = useState()
-  const [isLoading, setIsLoading] = useState(false)
+  const [orgData, setOrgData] = useState({
+    below2: [],
+    main: [],
+    empty: true,
+  })
+  const [isLoading, setIsLoading] = useState(true)
   const { user } = useAuth()
 
   //Times
@@ -34,33 +38,39 @@ const Home = () => {
   const currentYear = new Date().getFullYear()
 
   const handleData = async () => {
-    setIsLoading(true)
     try {
       let isBirthday = false
       const data = await getTrackdetails(user?.uid)
+      if (data.length) {
+        const newData = data.map((item) => {
+          let targetDate = new Date(currentYear, item.month, item.day)
+          let difference = targetDate - currentTime
+          if (difference < -day) {
+            targetDate = new Date(
+              parseInt(currentYear) + 1,
+              item.month,
+              item.day
+            )
+            difference = targetDate - currentTime
+          } else if (difference <= 0) {
+            isBirthday = true
+          }
+          return {
+            ...item,
+            difference,
+            isBirthday,
+            targetDate,
+          }
+        })
 
-      const newData = data.map((item) => {
-        let targetDate = new Date(currentYear, item.month, item.day)
-        let difference = targetDate - currentTime
-        if (difference < -day) {
-          targetDate = new Date(parseInt(currentYear) + 1, item.month, item.day)
-          difference = targetDate - currentTime
-        } else if (difference <= 0) {
-          isBirthday = true
-        }
-        return {
-          ...item,
-          difference,
-          isBirthday,
-          targetDate,
-        }
-      })
+        const sorted = newData.sort((a, b) => a.difference - b.difference)
+        setOrgData({
+          below2: sorted.filter((item) => item.difference < 2 * day),
+          main: sorted.filter((item) => item.difference >= 2 * day),
+          empty: false,
+        })
+      }
 
-      const sorted = newData.sort((a, b) => a.difference - b.difference)
-      setOrgData({
-        below2: sorted.filter((item) => item.difference < 2 * day),
-        main: sorted.filter((item) => item.difference >= 2 * day),
-      })
       setIsLoading(false)
       console.log('Done')
     } catch (error) {
@@ -90,8 +100,13 @@ const Home = () => {
 
   return (
     <div className='wrapper'>
+      {console.log(orgData)}
       {isLoading ? (
-        <p>Loading..</p>
+        <p className={styles.loading}>Loading..</p>
+      ) : orgData.empty ? (
+        <p className={styles.loading}>
+          No Data Found, Please Add Some People Here
+        </p>
       ) : (
         <div className={styles.flexWrapper}>
           {console.log('org', orgData)}

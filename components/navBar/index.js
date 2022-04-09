@@ -11,7 +11,16 @@ import NavLink from '../navLink'
 export default function NavBar() {
   const { user, handleSignOut } = useAuth()
   const [isOpen, setIsOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
+
+  const handleClick = async () => {
+    console.log('click')
+    setIsLoading(true)
+    await handleSignOut()
+    setIsLoading(false)
+    // setIsOpen(false)
+  }
   return (
     <>
       <nav className={styles.navWrapper}>
@@ -56,9 +65,13 @@ export default function NavBar() {
               MyProfile
             </NavLink>
           </div>
-          <div onClick={handleSignOut} className={styles.logOut}>
-            Sign Out
-          </div>
+          <button
+            onClick={handleClick}
+            disabled={isLoading}
+            className={styles.logOut}
+          >
+            {isLoading ? 'Loading' : 'Sign Out'}
+          </button>
         </div>
       )}
     </>

@@ -24,12 +24,12 @@ export default function CountCardDay({ person }) {
   }, [person])
 
   return (
-    <div className={styles.card}>
+    <div className={styles.cardDay}>
       <span className={styles.numbers}></span>
       {/* <p
         className={styles.countDown}
       >{`${monthRemain} Month , ${dayRemain} Days left`}</p> */}
-      <p className={styles.countDown}>
+      <p className={styles.countDownDay}>
         <span className={styles.numbers}>{hourRemain}</span> Hour ,{' '}
         <span className={styles.numbers}>{minRemain}</span> Minutes left
       </p>
