@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import styles from './countCard.module.css'
+import Link from 'next/link'
 
 export default function CountCardDay({ person }) {
   //Times
@@ -24,19 +25,26 @@ export default function CountCardDay({ person }) {
   }, [person])
 
   return (
-    <div className={styles.cardDay}>
-      <span className={styles.numbers}></span>
-      {/* <p
+    <Link
+      href={{
+        pathname: '/info',
+        query: { name: person.name, day: person.day, month: person.month },
+      }}
+    >
+      <a className={styles.cardDay}>
+        <span className={styles.numbers}></span>
+        {/* <p
         className={styles.countDown}
       >{`${monthRemain} Month , ${dayRemain} Days left`}</p> */}
-      <p className={styles.countDownDay}>
-        <span className={styles.numbers}>{hourRemain}</span> Hour ,{' '}
-        <span className={styles.numbers}>{minRemain}</span> Minutes left
-      </p>
-      <p className={styles.name}>{person.name}</p>
-      <p className={styles.birthday}>
-        {new Date(person.targetDate).toDateString()}
-      </p>
-    </div>
+        <p className={styles.countDownDay}>
+          <span className={styles.numbers}>{hourRemain}</span> Hour ,{' '}
+          <span className={styles.numbers}>{minRemain}</span> Minutes left
+        </p>
+        <p className={styles.name}>{person.name}</p>
+        <p className={styles.birthday}>
+          {new Date(person.targetDate).toDateString()}
+        </p>
+      </a>
+    </Link>
   )
 }

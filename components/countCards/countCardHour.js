@@ -1,5 +1,6 @@
 import styles from './countCard.module.css'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 export default function CountCardHour({ person }) {
   //Times
@@ -33,24 +34,31 @@ export default function CountCardHour({ person }) {
   }, [person])
 
   return (
-    <div className={isBirthday ? styles.cardBirthday : styles.cardHour}>
-      {isBirthday ? (
-        <p className={styles.wish}>Happy Birthday</p>
-      ) : minRemain ? (
-        <p className={styles.countDownDay}>
-          <span className={styles.numbers}>{minRemain}</span> Minute ,{' '}
-          <span className={styles.numbers}>{secRemain}</span> Seconds
-        </p>
-      ) : (
-        <p className={styles.countDown}>
-          OMG <span className={styles.numbers}>{secRemain}</span> Seconds Left
-        </p>
-      )}
+    <Link
+      href={{
+        pathname: '/info',
+        query: { name: person.name, day: person.day, month: person.month },
+      }}
+    >
+      <a className={isBirthday ? styles.cardBirthday : styles.cardHour}>
+        {isBirthday ? (
+          <p className={styles.wish}>Happy Birthday</p>
+        ) : minRemain ? (
+          <p className={styles.countDownDay}>
+            <span className={styles.numbers}>{minRemain}</span> Minute ,{' '}
+            <span className={styles.numbers}>{secRemain}</span> Seconds
+          </p>
+        ) : (
+          <p className={styles.countDown}>
+            OMG <span className={styles.numbers}>{secRemain}</span> Seconds Left
+          </p>
+        )}
 
-      <p className={styles.name}>{person.name}</p>
-      <p className={styles.birthday}>
-        {new Date(person.targetDate).toDateString()}
-      </p>
-    </div>
+        <p className={styles.name}>{person.name}</p>
+        <p className={styles.birthday}>
+          {new Date(person.targetDate).toDateString()}
+        </p>
+      </a>
+    </Link>
   )
 }
