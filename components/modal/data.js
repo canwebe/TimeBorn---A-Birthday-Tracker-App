@@ -46,7 +46,7 @@ export const example = [
   },
   {
     name: 'Aditi Padukone',
-    date: '9',
+    date: '10',
     month: '3',
   },
 ]

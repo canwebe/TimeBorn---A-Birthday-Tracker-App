@@ -1,0 +1,34 @@
+.card,
+.pcard {
+  box-shadow: 2px 3px 19px rgba(0, 0, 0, 0.3);
+  padding: 18px;
+  border-radius: 7px;
+}
+
+.pcard {
+  background-color: brown;
+}
+
+.countDown {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: darkcyan;
+}
+.numbers {
+  /* font-weight: 700; */
+  /* color: #090f69ae; */
+}
+
+.name {
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin: 6px 0 1px;
+}
+.birthday {
+  opacity: 0.6;
+}
+.wish {
+  font-weight: 700;
+  font-size: 1.7rem;
+}
