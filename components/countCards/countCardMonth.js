@@ -13,7 +13,7 @@ export default function CountCardMonth({ person, prior }) {
   return (
     <div className={prior ? styles.pcard : styles.card}>
       <span className={styles.numbers}></span>
-      <p className={styles.countDown}>
+      <p className={prior ? styles.countDownP : styles.countDown}>
         <span className={styles.numbers}>{dayRemain}</span> Days to Go
       </p>
       <p className={styles.name}>{person.name}</p>

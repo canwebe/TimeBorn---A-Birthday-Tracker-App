@@ -33,12 +33,11 @@ export default function CountCardHour({ person }) {
   }, [person])
 
   return (
-    <div className={styles.card}>
-      {console.log('hour')}
+    <div className={isBirthday ? styles.cardBirthday : styles.cardHour}>
       {isBirthday ? (
         <p className={styles.wish}>Happy Birthday</p>
       ) : minRemain ? (
-        <p className={styles.countDown}>
+        <p className={styles.countDownDay}>
           <span className={styles.numbers}>{minRemain}</span> Minute ,{' '}
           <span className={styles.numbers}>{secRemain}</span> Seconds
         </p>

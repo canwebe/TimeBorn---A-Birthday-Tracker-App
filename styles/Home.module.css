@@ -21,6 +21,13 @@
   padding: 77px 0px;
 }
 
+.loading {
+  text-align: center;
+  opacity: 0.6;
+  width: 80%;
+  margin: 46vh auto 0;
+}
+
 .header {
   /* text-align: center; */
   position: relative;
@@ -43,6 +50,6 @@
 .priorityParts {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
   margin-bottom: 37px;
 }
