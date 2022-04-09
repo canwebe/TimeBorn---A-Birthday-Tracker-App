@@ -2,7 +2,8 @@
 .modal {
   min-height: 300px;
   width: 90%;
-  background-color: var(--color-green);
+  /* background-color: var(--color-green); */
+  background-color: aliceblue;
   z-index: 99;
   border-radius: 7px;
   position: relative;
