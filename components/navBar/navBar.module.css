@@ -4,12 +4,19 @@
   background-color: aliceblue;
   /* overflow: hidden; */
 }
-
+.navWrapper {
+  background-color: var(--color-body);
+  padding: 13px 0 7px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+}
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 13px;
+  /* margin-top: 13px; */
 }
 
 .menu {
@@ -29,7 +36,7 @@
   flex-direction: column;
   top: 0;
   left: 0;
-  z-index: 9;
+  z-index: 99;
   box-shadow: 3px 0 18px rgba(0, 0, 0, 0.3);
 }
 
@@ -39,8 +46,7 @@
   align-items: center;
   padding: 18px 10px 18px 15px;
   color: white;
-  /* background-color: #6bcb77; */
-  background-color: var(--color-orange);
+  background-color: #42a64f;
 }
 
 /* .mainLogo {
@@ -65,4 +71,5 @@
   /* background-color: #3255e1; */
   background-color: var(--color-orange);
   border-radius: 5px;
+  border-bottom: 2px solid #d84646;
 }

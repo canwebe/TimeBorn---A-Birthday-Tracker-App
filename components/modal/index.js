@@ -1,21 +1,47 @@
 import { MdOutlineClose } from 'react-icons/md'
 import cls from 'classnames'
 import styles from './modal.module.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { months } from './data'
+import { useAuth } from '../../contexts/authContext'
+import { trackBirthday } from '../../helpers/firebase'
 
-export default function Modal({ setIsModal }) {
+export default function Modal({ setIsModal, uid, handleData }) {
   const [name, setName] = useState('')
-  const [day, setDay] = useState('0')
+  const [day, setDay] = useState('')
   const [month, setMonth] = useState('1')
-  const [dob, setDob] = useState(new Date())
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  // const { user } = useAuth()
 
   const day30 = ['1', '3', '5', '8', '10']
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(name, day, month)
+    setIsLoading(true)
+    try {
+      await trackBirthday(uid, name, day, month)
+      setName('')
+      setDay('')
+      setMonth('1')
+      setIsLoading(false)
+      handleData()
+      setIsModal(false)
+    } catch (error) {
+      console.log(error)
+      setName('')
+      setDay('')
+      setMonth('1')
+      setError('Something went wrong, Try Again!')
+      setIsLoading(false)
+    }
   }
+  useEffect(() => {
+    document.querySelector('body').style.overflow = 'hidden'
+
+    return () => (document.querySelector('body').style.overflow = 'auto')
+  }, [])
 
   return (
     <div className={styles.backDrop}>
@@ -25,6 +51,7 @@ export default function Modal({ setIsModal }) {
           className={styles.cross}
         />
         <h1 className={styles.heading}>Add Your Friend</h1>
+        {!error && <p className={styles.error}>{error}</p>}
         <form onSubmit={handleSubmit} className={styles.form}>
           <input
             className={styles.input}
@@ -67,7 +94,7 @@ export default function Modal({ setIsModal }) {
               onChange={(e) => setDay(e.target.value)}
               value={day}
             >
-              <option value='0'>Day</option>
+              <option value=''>Day</option>
               {[
                 ...Array(
                   day30.includes(month) ? (month === '1' ? 29 : 30) : 31
@@ -79,8 +106,8 @@ export default function Modal({ setIsModal }) {
               ))}
             </select>
           </div>
-          <button className={styles.btn} type='submit'>
-            Add Details
+          <button disabled={isLoading} className={styles.btn} type='submit'>
+            {isLoading ? 'Loading' : 'Add Details'}
           </button>
         </form>
       </div>

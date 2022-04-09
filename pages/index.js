@@ -12,13 +12,16 @@ import CountCardMain from '../components/countCards/countCardMain'
 import CountCardDay from '../components/countCards/countCardDay'
 import CountCardMonth from '../components/countCards/countCardMonth'
 import CountCardHour from '../components/countCards/countCardHour'
+import { useAuth } from '../contexts/authContext'
+import { getTrackdetails } from '../helpers/firebase'
 
 const Home = () => {
   const router = useRouter()
   const [isModal, setIsModal] = useState(false)
-  const [data, setData] = useState([])
+  // const [data, setData] = useState([])
   const [orgData, setOrgData] = useState()
   const [isLoading, setIsLoading] = useState(false)
+  const { user } = useAuth()
 
   //Times
   const sec = 1000
@@ -30,32 +33,40 @@ const Home = () => {
   const currentTime = new Date()
   const currentYear = new Date().getFullYear()
 
-  const handelData = () => {
+  const handleData = async () => {
     setIsLoading(true)
-    let isBirthday = false
-    const newData = data.map((item) => {
-      let targetDate = new Date(currentYear, item.month, item.date)
-      let difference = targetDate - currentTime
-      if (difference < -day) {
-        targetDate = new Date(parseInt(currentYear) + 1, item.month, item.date)
-        difference = targetDate - currentTime
-      } else if (difference <= 0) {
-        isBirthday = true
-      }
-      return {
-        ...item,
-        difference,
-        isBirthday,
-        targetDate,
-      }
-    })
-    setIsLoading(false)
-    const sorted = newData.sort((a, b) => a.difference - b.difference)
-    setOrgData({
-      below2: sorted.filter((item) => item.difference < 2 * day),
-      main: sorted.filter((item) => item.difference >= 2 * day),
-    })
-    console.log('Done')
+    try {
+      let isBirthday = false
+      const data = await getTrackdetails(user?.uid)
+
+      const newData = data.map((item) => {
+        let targetDate = new Date(currentYear, item.month, item.day)
+        let difference = targetDate - currentTime
+        if (difference < -day) {
+          targetDate = new Date(parseInt(currentYear) + 1, item.month, item.day)
+          difference = targetDate - currentTime
+        } else if (difference <= 0) {
+          isBirthday = true
+        }
+        return {
+          ...item,
+          difference,
+          isBirthday,
+          targetDate,
+        }
+      })
+
+      const sorted = newData.sort((a, b) => a.difference - b.difference)
+      setOrgData({
+        below2: sorted.filter((item) => item.difference < 2 * day),
+        main: sorted.filter((item) => item.difference >= 2 * day),
+      })
+      setIsLoading(false)
+      console.log('Done')
+    } catch (error) {
+      console.log('Something went wrong in fetch', error)
+      setIsLoading(false)
+    }
   }
 
   const renderCards = (difference, item) => {
@@ -74,27 +85,29 @@ const Home = () => {
 
   // Side Effect
   useEffect(() => {
-    setData(example)
-    if (data) {
-      handelData()
-    }
-  }, [data])
+    handleData()
+  }, [])
 
   return (
-    <>
+    <div className='wrapper'>
       {isLoading ? (
         <p>Loading..</p>
       ) : (
         <div className={styles.flexWrapper}>
-          <div className={styles.priority}>
-            <h1 className={styles.header}>Recents</h1>
-            <div className={styles.priorityParts}>
-              {orgData?.below2?.map((item, i) =>
-                // <CountCardMain person={item} key={i} />
-                renderCards(item.difference, item)
-              )}
+          {console.log('org', orgData)}
+          {orgData?.below2.length > 0 && (
+            <div className={styles.priority}>
+              <h1 className={styles.header}>In Two Days</h1>
+              <div className={styles.priorityParts}>
+                {orgData?.below2?.map((item, i) =>
+                  // <CountCardMain person={item} key={i} />
+                  renderCards(item.difference, item)
+                )}
+              </div>
+              {console.log('home')}
             </div>
-          </div>
+          )}
+
           <div className={styles.priority}>
             <h1 className={styles.header}>Upcommings</h1>
             <div className={styles.priorityParts}>
@@ -110,8 +123,14 @@ const Home = () => {
       <div onClick={() => setIsModal(true)} className={styles.addBtn}>
         <MdOutlineAdd />
       </div>
-      {isModal && <Modal setIsModal={setIsModal} />}
-    </>
+      {isModal && (
+        <Modal
+          setIsModal={setIsModal}
+          uid={user?.uid}
+          handleData={handleData}
+        />
+      )}
+    </div>
   )
 }
 
