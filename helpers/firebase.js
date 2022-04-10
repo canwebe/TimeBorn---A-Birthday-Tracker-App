@@ -63,3 +63,19 @@ export const fetchNote = async (uid, slug) => {
     return ''
   }
 }
+
+export const fetchWishes = async (tag) => {
+  let res
+  if (tag) {
+    const q = query(collection(db, 'birthdayWishes'), where('tag', '==', tag))
+    res = await getDocs(q)
+  } else {
+    res = await getDocs(collection(db, 'birthdayWishes'))
+  }
+
+  if (!res.empty) {
+    return res.docs.map((item) => item.data())
+  } else {
+    return []
+  }
+}
