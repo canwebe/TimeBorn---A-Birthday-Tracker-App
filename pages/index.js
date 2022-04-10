@@ -26,7 +26,7 @@ const Home = () => {
   })
   const [isLoading, setIsLoading] = useState(true)
   const { user } = useAuth()
-
+  console.log(user)
   //Times
   const sec = 1000
   const min = sec * 60

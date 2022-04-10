@@ -30,19 +30,20 @@ export default function NavBar() {
             className={styles.menu}
             onClick={() => setIsOpen(true)}
           />
-
-          <div className={styles.avatarImg}>
-            {user && (
-              <Image
-                alt='avatar image'
-                width='20px'
-                height='20px'
-                layout='responsive'
-                className={styles.img}
-                src={user?.photoURL}
-              />
-            )}
-          </div>
+          <Link href='/profile'>
+            <a className={styles.avatarImg}>
+              {user && (
+                <Image
+                  alt='avatar image'
+                  width='20px'
+                  height='20px'
+                  layout='responsive'
+                  className={styles.img}
+                  src={user?.photoURL}
+                />
+              )}
+            </a>
+          </Link>
         </div>
       </nav>
       {isOpen && (

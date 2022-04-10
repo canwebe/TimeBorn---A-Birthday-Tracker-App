@@ -1,14 +1,17 @@
+import { updateProfile } from 'firebase/auth'
 import {
   addDoc,
   collection,
   deleteDoc,
+  doc,
   getDoc,
   getDocs,
   query,
+  setDoc,
   updateDoc,
   where,
 } from 'firebase/firestore'
-import { db } from '../lib/firebase'
+import { auth, db } from '../lib/firebase'
 
 export const trackBirthday = async (uid, name, day, month) => {
   await addDoc(collection(db, `users/${uid}/trackers`), {
@@ -16,6 +19,7 @@ export const trackBirthday = async (uid, name, day, month) => {
     day,
     month,
     slug: name + day + month,
+    privacy: false,
   })
 }
 
@@ -77,5 +81,46 @@ export const fetchWishes = async (tag) => {
     return res.docs.map((item) => item.data())
   } else {
     return []
+  }
+}
+
+export const userDateEdit = async (uid, day, month) => {
+  const ref = doc(db, 'users', uid)
+  console.log(ref)
+  await setDoc(
+    ref,
+    {
+      day,
+      month,
+    },
+
+    { merge: true }
+  )
+}
+
+export const fetchUserDob = async (uid) => {
+  const ref = doc(db, 'users', uid)
+  const res = await getDoc(ref)
+  if (res.exists) {
+    return res.data()
+  }
+}
+
+export const updateUserName = async (name) => {
+  await updateProfile(auth.currentUser, {
+    displayName: name,
+  })
+}
+
+export const updatePrivacy = async (uid, slug, privacy) => {
+  const q = query(
+    collection(db, `users/${uid}/trackers`),
+    where('slug', '==', slug)
+  )
+  const snapshot = await getDocs(q)
+  if (!snapshot.empty) {
+    await updateDoc(snapshot.docs[0].ref, {
+      privacy,
+    })
   }
 }

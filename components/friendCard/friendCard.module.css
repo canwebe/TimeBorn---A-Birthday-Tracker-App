@@ -1,0 +1,50 @@
+.friendCard {
+  background-color: #bed2e3;
+  padding: 10px 10px 10px 20px;
+  border-radius: 7px;
+  min-height: 79.6px;
+}
+
+.friendName {
+  font-weight: 600;
+}
+
+.friendDate {
+  font-size: 1rem;
+  margin-right: auto;
+}
+
+.bottomDiv {
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.updateBtn {
+  background-color: var(--color-blue-primary);
+  font-size: 0.95rem;
+  color: white;
+  padding: 3px;
+  width: 70px;
+  border-radius: 7px;
+}
+
+.public,
+.private {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.public {
+  color: green;
+}
+.private {
+  color: #ac2121;
+}
+
+.downarrow {
+  font-size: 1.4rem;
+  margin-left: -5px;
+}

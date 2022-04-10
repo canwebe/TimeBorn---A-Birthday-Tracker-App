@@ -1,0 +1,98 @@
+.profile {
+  padding: 77px 0px;
+}
+
+.heading {
+  /* text-align: center; */
+  font-size: 1.8rem;
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.heading::after {
+  content: '';
+  height: 3px;
+  display: block;
+  background-color: cadetblue;
+  position: absolute;
+  bottom: -5px;
+  left: 5px;
+  right: 14px;
+}
+
+.photoWrapper {
+  width: 130px;
+  background-color: rgb(255, 255, 255);
+  height: 130px;
+  border-radius: 50%;
+  margin: 25px auto 12px;
+  padding: 3px;
+}
+
+.avatarImg {
+  border-radius: 50%;
+}
+
+.name {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.dob {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.dobSpan {
+  font-weight: 700;
+}
+
+.name,
+.dob {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.edit {
+  margin-right: -10px;
+  font-size: 1.4rem;
+}
+
+.editDob {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin: 10px 0;
+}
+
+.selectDay {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 9px;
+}
+
+.selectDay:focus {
+  outline: none;
+}
+
+.doneBtn {
+  background-color: var(--color-blue-primary);
+  font-size: 1.1rem;
+  width: 80px;
+  color: white;
+  border-radius: 9px;
+  margin-left: 7px;
+}
+
+.friendListWrapper {
+  background-color: #65a36d;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 27px 0;
+  padding: 20px 20px 40px;
+  border-radius: 7px;
+}
