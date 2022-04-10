@@ -1,7 +1,5 @@
 .card,
 .pcard,
-.cardHour,
-.cardDay,
 .cardBirthday {
   /* box-shadow: 2px 3px 19px rgba(0, 0, 0, 0.3); */
   padding: 18px;
@@ -10,11 +8,11 @@
     -8px -8px 12px 0 rgb(164 237 173);
 }
 
-.cardHour,
+/* .cardHour,
 .cardDay {
   background-color: var(--color-card-1);
   color: white;
-}
+} */
 
 .cardBirthday {
   background-color: var(--color-card-3);
@@ -24,10 +22,10 @@
 .pcard {
   background-color: var(--color-card-4);
   color: aquamarine;
+  color: #71d6e4;
 }
 
 .countDown,
-.countDownDay,
 .countDownP {
   font-size: 1.6rem;
   font-weight: 600;
@@ -39,13 +37,6 @@
   color: #04363d;
 }
 
-.countDownDay {
-  color: var(--color-card-hour);
-}
-
-.cardHour .countDown {
-  color: black;
-}
 .numbers {
   /* font-weight: 700; */
   /* color: #090f69ae; */

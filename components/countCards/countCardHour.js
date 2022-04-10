@@ -40,11 +40,11 @@ export default function CountCardHour({ person }) {
         query: { name: person.name, day: person.day, month: person.month },
       }}
     >
-      <a className={isBirthday ? styles.cardBirthday : styles.cardHour}>
+      <a className={isBirthday ? styles.cardBirthday : styles.pcard}>
         {isBirthday ? (
           <p className={styles.wish}>Happy Birthday</p>
         ) : minRemain ? (
-          <p className={styles.countDownDay}>
+          <p className={styles.countDownP}>
             <span className={styles.numbers}>{minRemain}</span> Minute ,{' '}
             <span className={styles.numbers}>{secRemain}</span> Seconds
           </p>

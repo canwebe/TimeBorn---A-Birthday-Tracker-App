@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import styles from './countCard.module.css'
 
-export default function CountCardMonth({ person, prior }) {
+export default function CountCardMonth({ person }) {
   //Times
   const sec = 1000
   const min = sec * 60
@@ -18,9 +18,9 @@ export default function CountCardMonth({ person, prior }) {
         query: { name: person.name, day: person.day, month: person.month },
       }}
     >
-      <a className={prior ? styles.pcard : styles.card}>
+      <a className={styles.card}>
         <span className={styles.numbers}></span>
-        <p className={prior ? styles.countDownP : styles.countDown}>
+        <p className={styles.countDown}>
           <span className={styles.numbers}>{dayRemain}</span> Days to Go
         </p>
         <p className={styles.name}>{person.name}</p>

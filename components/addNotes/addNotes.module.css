@@ -1,0 +1,53 @@
+.heading {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.btn {
+  background-color: #3255e1;
+  color: aliceblue;
+  padding: 10px 5px;
+  width: 180px;
+  border-radius: 7px;
+
+  border-bottom: 2.5px solid #0101ab;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:active {
+  background-color: #1b3dc2;
+}
+.btn:hover {
+  transform: translateY(2px);
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin: 9px 0 0px;
+  font-size: 1.1rem;
+}
+
+.textarea {
+  width: 100%;
+  padding: 9px 15px;
+  font-size: 1.1rem;
+  border: 1px solid black;
+  border-radius: 7px;
+}
+
+.input {
+  padding: 9px 15px;
+  font-size: 1.1rem;
+  border: 1px solid black;
+  border-radius: 7px;
+  width: 100%;
+}

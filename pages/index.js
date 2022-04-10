@@ -14,6 +14,7 @@ import CountCardMonth from '../components/countCards/countCardMonth'
 import CountCardHour from '../components/countCards/countCardHour'
 import { useAuth } from '../contexts/authContext'
 import { getTrackdetails } from '../helpers/firebase'
+import AddTrackerModal from '../components/addTrackerModal'
 
 const Home = () => {
   const router = useRouter()
@@ -139,11 +140,13 @@ const Home = () => {
         <MdOutlineAdd />
       </div>
       {isModal && (
-        <Modal
-          setIsModal={setIsModal}
-          uid={user?.uid}
-          handleData={handleData}
-        />
+        <Modal setIsModal={setIsModal}>
+          <AddTrackerModal
+            setIsModal={setIsModal}
+            uid={user?.uid}
+            handleData={handleData}
+          />
+        </Modal>
       )}
     </div>
   )
