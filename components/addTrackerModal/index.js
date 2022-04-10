@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { trackBirthday } from '../../helpers/firebase'
-import { months } from '../modal/data'
+import { months } from '../../data/data'
 import styles from './addTrackerModal.module.css'
 
 export default function AddTrackerModal({ setIsModal, uid, handleData }) {

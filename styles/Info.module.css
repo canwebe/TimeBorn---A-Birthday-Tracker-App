@@ -3,18 +3,21 @@
 }
 
 .infoBox {
-  padding: 15px 20px;
+  padding: 25px 25px 20px 20px;
   border-left: 10px solid #1a6740;
-  background-color: #46b854;
-  color: aliceblue;
+  background-color: #ffffff;
+  position: relative;
+  border-radius: 0 10px 10px 0;
 }
 
 .name {
   font-size: 2rem;
   font-weight: 600;
+  line-height: 33px;
+  margin-bottom: 7px;
 }
 
-.deleteBtn,
+.planBtn,
 .addBtn {
   color: white;
   padding: 6px 5px 6px 0px;
@@ -27,10 +30,10 @@
   transition: all 0.3s ease-in-out;
 }
 
-.deleteBtn {
-  background-color: rgb(197, 24, 24);
-  border-bottom: 2.3px solid rgb(130, 5, 5);
-  width: 100px;
+.planBtn {
+  background-color: #6a5495;
+  border-bottom: 2.3px solid #342356;
+  width: 160px;
 }
 
 .addBtn {
@@ -39,11 +42,13 @@
   width: 140px;
 }
 
-.deleteBtn:active {
-  background-color: rgb(159, 27, 27);
+.planBtn:active,
+.wishBtn:active {
+  background-color: #5b4784;
 }
 
-.addBtn:active {
+.addBtn:active,
+.shuffleBtn:active {
   background-color: rgb(17, 44, 177);
 }
 
@@ -70,11 +75,93 @@
 .btnWrapper {
   display: flex;
   gap: 12px;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .note {
-  padding: 30px;
-  background-color: #afdbb7;
+  padding: 15px;
+  background-color: #b4debc;
   margin-top: 10px;
+  border-radius: 10px;
+  font-size: 1rem;
+  min-height: 75px;
+  opacity: 0.7;
+}
+
+.delete,
+.deleteWait {
+  position: absolute;
+  font-size: 2rem;
+  top: 6px;
+  right: 4px;
+}
+.delete {
+  color: #d93838;
+}
+
+.deleteWait {
+  color: #f87070;
+}
+
+.wishesWrapper {
+  margin: 40px 0;
+}
+
+.wishes {
+  padding: 30px;
+  /* background-color: white; */
+  margin: 15px auto 20px;
+  border-radius: 7px;
+  background: rgb(9, 172, 205);
+  background: linear-gradient(
+    90deg,
+    rgba(9, 172, 205, 1) 0%,
+    rgba(138, 91, 221, 1) 100%
+  );
+  box-shadow: 12px 12px 16px 0 rgb(0 0 0 / 20%),
+    -8px -8px 12px 0 rgb(164 237 173);
+  min-height: 70px;
+}
+
+.wishesPara {
+  font-size: 1.2rem;
+  color: #1c0864;
+}
+.select {
+  padding: 6px 10px;
+  border-radius: 9px;
+  font-size: 1.2rem;
+  background-color: transparent;
+  border: 1px solid #000551;
+  width: 100px;
+  color: #000551;
+}
+.select:focus {
+  outline: none;
+}
+.wishBtnWrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.wishBtn,
+.shuffleBtn {
+  padding: 6px 2px;
+  font-size: 1.18rem;
+  border-radius: 9px;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.shuffleBtn {
+  width: 90px;
+  background-color: var(--color-blue-primary);
+  border-bottom: 2.3px solid rgb(0, 0, 135);
+}
+
+.wishBtn {
+  width: 115px;
+  background-color: #6a5495;
+  border-bottom: 2.3px solid #342356;
 }
