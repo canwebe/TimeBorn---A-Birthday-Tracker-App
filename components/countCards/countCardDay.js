@@ -32,10 +32,6 @@ export default function CountCardDay({ person }) {
       }}
     >
       <a className={styles.pcard}>
-        <span className={styles.numbers}></span>
-        {/* <p
-        className={styles.countDown}
-      >{`${monthRemain} Month , ${dayRemain} Days left`}</p> */}
         <p className={styles.countDownP}>
           <span className={styles.numbers}>{hourRemain}</span> Hour ,{' '}
           <span className={styles.numbers}>{minRemain}</span> Minutes left

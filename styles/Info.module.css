@@ -32,13 +32,13 @@
 
 .planBtn {
   background-color: #6a5495;
-  border-bottom: 2.3px solid #342356;
+  border-bottom: 2px solid #533e7a;
   width: 160px;
 }
 
 .addBtn {
   background-color: var(--color-blue-primary);
-  border-bottom: 2.3px solid rgb(0, 0, 135);
+  border-bottom: 2px solid #2240b6;
   width: 140px;
 }
 
@@ -93,14 +93,27 @@
   position: absolute;
   font-size: 2rem;
   top: 6px;
-  right: 4px;
+  right: 5px;
 }
+
 .delete {
   color: #d93838;
 }
 
 .deleteWait {
   color: #f87070;
+}
+
+.sound,
+.nosound {
+  position: absolute;
+  font-size: 2rem;
+  bottom: 6px;
+  right: 5px;
+}
+
+.nosound {
+  color: rgb(176, 176, 176);
 }
 
 .wishesWrapper {
@@ -142,7 +155,7 @@
 .wishBtnWrapper {
   display: flex;
   gap: 10px;
-  align-items: center;
+  /* align-items: stretch; */
 }
 
 .wishBtn,
@@ -157,11 +170,15 @@
 .shuffleBtn {
   width: 90px;
   background-color: var(--color-blue-primary);
-  border-bottom: 2.3px solid rgb(0, 0, 135);
+  border-bottom: 1.5px solid #2240b6;
 }
 
 .wishBtn {
   width: 115px;
   background-color: #6a5495;
-  border-bottom: 2.3px solid #342356;
+  border-bottom: 1.5px solid #533e7a;
+}
+
+.audio {
+  display: none;
 }

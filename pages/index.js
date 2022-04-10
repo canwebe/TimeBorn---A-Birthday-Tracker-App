@@ -43,6 +43,7 @@ const Home = () => {
       const data = await getTrackdetails(user?.uid)
       if (data.length) {
         const newData = data.map((item) => {
+          isBirthday = false
           let targetDate = new Date(currentYear, item.month, item.day)
           let difference = targetDate - currentTime
           if (difference < -day) {

@@ -37,7 +37,12 @@ export default function CountCardHour({ person }) {
     <Link
       href={{
         pathname: '/info',
-        query: { name: person.name, day: person.day, month: person.month },
+        query: {
+          name: person.name,
+          day: person.day,
+          month: person.month,
+          btune: true,
+        },
       }}
     >
       <a className={isBirthday ? styles.cardBirthday : styles.pcard}>
