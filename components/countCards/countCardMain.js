@@ -20,10 +20,6 @@ export default function CountCardMain({ person }) {
       }}
     >
       <a className={styles.card}>
-        <span className={styles.numbers}></span>
-        {/* <p
-        className={styles.countDown}
-      >{`${monthRemain} Month , ${dayRemain} Days left`}</p> */}
         <p className={styles.countDown}>
           <span className={styles.numbers}>{monthRemain}</span> Month ,{' '}
           <span className={styles.numbers}>{dayRemain}</span> Days left

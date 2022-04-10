@@ -32,13 +32,13 @@
 
 .planBtn {
   background-color: #6a5495;
-  border-bottom: 2.3px solid #342356;
+  border-bottom: 1px solid #342356;
   width: 160px;
 }
 
 .addBtn {
   background-color: var(--color-blue-primary);
-  border-bottom: 2.3px solid rgb(0, 0, 135);
+  border-bottom: 1px solid rgb(0, 0, 135);
   width: 140px;
 }
 
@@ -157,11 +157,11 @@
 .shuffleBtn {
   width: 90px;
   background-color: var(--color-blue-primary);
-  border-bottom: 2.3px solid rgb(0, 0, 135);
+  border-bottom: 1px solid rgb(0, 0, 135);
 }
 
 .wishBtn {
   width: 115px;
   background-color: #6a5495;
-  border-bottom: 2.3px solid #342356;
+  border-bottom: 1px solid #342356;
 }
