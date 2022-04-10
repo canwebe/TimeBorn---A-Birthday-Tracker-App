@@ -211,6 +211,7 @@ export default function Info({ result }) {
             </button>
           </div>
         </div>
+        <h1>Suggested Gift Items</h1>
       </div>
       <div onClick={() => router.back()} className={styles.backBtn}>
         <MdChevronLeft /> Back
