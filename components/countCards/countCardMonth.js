@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styles from './countCard.module.css'
 
 export default function CountCardMonth({ person, prior }) {
@@ -11,15 +12,22 @@ export default function CountCardMonth({ person, prior }) {
   const dayRemain = Math.floor((person.difference % month) / day)
 
   return (
-    <div className={prior ? styles.pcard : styles.card}>
-      <span className={styles.numbers}></span>
-      <p className={prior ? styles.countDownP : styles.countDown}>
-        <span className={styles.numbers}>{dayRemain}</span> Days to Go
-      </p>
-      <p className={styles.name}>{person.name}</p>
-      <p className={styles.birthday}>
-        {new Date(person.targetDate).toDateString()}
-      </p>
-    </div>
+    <Link
+      href={{
+        pathname: '/info',
+        query: { name: person.name, day: person.day, month: person.month },
+      }}
+    >
+      <a className={prior ? styles.pcard : styles.card}>
+        <span className={styles.numbers}></span>
+        <p className={prior ? styles.countDownP : styles.countDown}>
+          <span className={styles.numbers}>{dayRemain}</span> Days to Go
+        </p>
+        <p className={styles.name}>{person.name}</p>
+        <p className={styles.birthday}>
+          {new Date(person.targetDate).toDateString()}
+        </p>
+      </a>
+    </Link>
   )
 }
