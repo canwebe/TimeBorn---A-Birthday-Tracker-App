@@ -31,12 +31,12 @@ export default function CountCardDay({ person }) {
         query: { name: person.name, day: person.day, month: person.month },
       }}
     >
-      <a className={styles.cardDay}>
+      <a className={styles.pcard}>
         <span className={styles.numbers}></span>
         {/* <p
         className={styles.countDown}
       >{`${monthRemain} Month , ${dayRemain} Days left`}</p> */}
-        <p className={styles.countDownDay}>
+        <p className={styles.countDownP}>
           <span className={styles.numbers}>{hourRemain}</span> Hour ,{' '}
           <span className={styles.numbers}>{minRemain}</span> Minutes left
         </p>

@@ -4,8 +4,9 @@
 
 .infoBox {
   padding: 15px 20px;
-  border-left: 10px solid var(--color-orange);
-  background-color: #94b498;
+  border-left: 10px solid #1a6740;
+  background-color: #46b854;
+  color: aliceblue;
 }
 
 .name {
@@ -13,23 +14,37 @@
   font-weight: 600;
 }
 
-.deleteBtn {
-  background-color: rgb(197, 24, 24);
+.deleteBtn,
+.addBtn {
   color: white;
-  padding: 6px 15px 6px 10px;
+  padding: 6px 5px 6px 0px;
   border-radius: 9px;
-  margin-top: 10px;
   font-size: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 3px;
-  border-bottom: 2.3px solid rgb(130, 5, 5);
   transition: all 0.3s ease-in-out;
+}
+
+.deleteBtn {
+  background-color: rgb(197, 24, 24);
+  border-bottom: 2.3px solid rgb(130, 5, 5);
+  width: 100px;
+}
+
+.addBtn {
+  background-color: var(--color-blue-primary);
+  border-bottom: 2.3px solid rgb(0, 0, 135);
+  width: 140px;
 }
 
 .deleteBtn:active {
   background-color: rgb(159, 27, 27);
+}
+
+.addBtn:active {
+  background-color: rgb(17, 44, 177);
 }
 
 .backBtn {
@@ -50,4 +65,16 @@
 
 .backBtn:active {
   background-color: #e35757;
+}
+
+.btnWrapper {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.note {
+  padding: 30px;
+  background-color: #afdbb7;
+  margin-top: 10px;
 }

@@ -5,6 +5,7 @@ import {
   getDoc,
   getDocs,
   query,
+  updateDoc,
   where,
 } from 'firebase/firestore'
 import { db } from '../lib/firebase'
@@ -34,4 +35,31 @@ export const deleteTracker = async (uid, slug) => {
   )
   const snapshot = await getDocs(q)
   await deleteDoc(snapshot.docs[0].ref)
+}
+
+export const addNotes = async (uid, slug, note) => {
+  const q = query(
+    collection(db, `users/${uid}/trackers`),
+    where('slug', '==', slug)
+  )
+  const snapshot = await getDocs(q)
+
+  if (!snapshot.empty) {
+    await updateDoc(snapshot.docs[0].ref, {
+      note,
+    })
+  }
+}
+
+export const fetchNote = async (uid, slug) => {
+  const q = query(
+    collection(db, `users/${uid}/trackers`),
+    where('slug', '==', slug)
+  )
+  const snapshot = await getDocs(q)
+  if (!snapshot.empty) {
+    return snapshot.docs[0].data()?.note
+  } else {
+    return ''
+  }
 }
