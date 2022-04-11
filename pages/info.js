@@ -15,6 +15,7 @@ import { deleteTracker, fetchNote, fetchWishes } from '../helpers/firebase'
 import { useEffect, useRef, useState } from 'react'
 import Modal from '../components/modal'
 import AddNotes from '../components/addNotes'
+import BackBtn from '../components/backBtn'
 
 export default function Info({ result }) {
   const router = useRouter()
@@ -62,11 +63,10 @@ export default function Info({ result }) {
     }
   }
 
-  const handleShuffle = () => {
+  const handleShuffle = async () => {
     // const no = Math.floor(Math.random() * wishList.length)
     setIsBtnLoading(true)
     const no = random()
-    console.log(no)
     setWish(wishList[no].wishe)
     setIsBtnLoading(false)
   }
@@ -183,7 +183,6 @@ export default function Info({ result }) {
         <div className={styles.wishesWrapper}>
           <h1>Birthday Wishes</h1>
           <div className={styles.wishes}>
-            {console.log('props,', wishList, wish, tag)}
             <p className={styles.wishesPara}>{wish}</p>
           </div>
           <div className={styles.wishBtnWrapper}>
@@ -197,7 +196,7 @@ export default function Info({ result }) {
               <option value='inspire'>Inspire</option>
               <option value='funny'>Funny</option>
               <option value='cute'>Cute</option>
-              <option value='ddsb'>ddsbs</option>
+              <option value='cool'>Cool</option>
             </select>
             <button
               onClick={handleShuffle}
@@ -213,9 +212,7 @@ export default function Info({ result }) {
         </div>
         <h1>Suggested Gift Items</h1>
       </div>
-      <div onClick={() => router.back()} className={styles.backBtn}>
-        <MdChevronLeft /> Back
-      </div>
+      <BackBtn />
       {isModal && (
         <Modal setIsModal={setIsModal}>
           <AddNotes

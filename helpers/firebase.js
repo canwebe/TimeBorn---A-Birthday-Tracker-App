@@ -15,13 +15,13 @@ import {
 } from 'firebase/firestore'
 import { auth, db } from '../lib/firebase'
 
-export const trackBirthday = async (uid, name, day, month) => {
+export const trackBirthday = async (uid, name, day, month, privacy = true) => {
   await addDoc(collection(db, `users/${uid}/trackers`), {
     name,
     day,
     month,
     slug: name + day + month,
-    privacy: true,
+    privacy,
   })
 }
 
@@ -154,11 +154,21 @@ export const saveTrackerToOwn = async (uid, slug, day, month, name) => {
 export const getSearchResults = async (name, uid) => {
   const q = query(
     collection(db, 'users'),
-    where('name', '==', name.toLowerCase()),
+    where('nameLower', '==', name),
     where('uid', '!=', uid)
   )
   const snapshot = await getDocs(q)
   if (!snapshot.empty) {
     return snapshot.docs.map((item) => item.data())
+  }
+}
+
+export const getAllUsers = async (uid) => {
+  const q = query(collection(db, 'users'), where('uid', '!=', uid))
+  const snapshot = await getDocs(q)
+  if (!snapshot.empty) {
+    return snapshot.docs.map((item) => item.data())
+  } else {
+    return []
   }
 }

@@ -1,5 +1,5 @@
-import styles from '../../styles/Profile.module.css'
-import { useAuth } from '../../contexts/authContext'
+import styles from '../styles/Profile.module.css'
+import { useAuth } from '../contexts/authContext'
 import { MdModeEdit } from 'react-icons/md'
 import Image from 'next/image'
 import {
@@ -8,12 +8,12 @@ import {
   getTrackdetailsOrder,
   updateUserName,
   userDataEdit,
-} from '../../helpers/firebase'
+} from '../helpers/firebase'
 import { useEffect, useState } from 'react'
-import { months } from '../../data/data'
-import FriendCard from '../../components/friendCard'
+import { months } from '../data/data'
+import FriendCard from '../components/friendCard'
 
-export default function Profile({ results }) {
+export default function Profile() {
   const { user } = useAuth()
   const [day, setDay] = useState('')
   const [month, setMonth] = useState('1')
@@ -23,7 +23,7 @@ export default function Profile({ results }) {
   const [dobWait, setDobWait] = useState(false)
   const [nameWait, setNameWait] = useState(false)
   const [date, setDate] = useState('')
-  const [frndList, setFrndList] = useState(results)
+  const [frndList, setFrndList] = useState([])
   const [filterList, setFilterList] = useState([])
   const [searchString, setSearchString] = useState('')
 
@@ -93,7 +93,7 @@ export default function Profile({ results }) {
 
   useEffect(() => {
     fetchData()
-    // fetchFriends()
+    fetchFriends()
   }, [])
 
   return (
@@ -234,18 +234,18 @@ export default function Profile({ results }) {
   )
 }
 
-export async function getServerSideProps(context) {
-  const uid = context.query.uid
-  let results = []
-  try {
-    const res = await getTrackdetailsOrder(uid, 'privacy')
-    if (res.length) {
-      results = res
-    }
-  } catch (error) {
-    console.log(error)
-  }
-  return {
-    props: { results },
-  }
-}
+// export async function getServerSideProps(context) {
+//   const uid = context.query.uid
+//   let results = []
+//   try {
+//     const res = await getTrackdetailsOrder(uid, 'privacy')
+//     if (res.length) {
+//       results = res
+//     }
+//   } catch (error) {
+//     console.log(error)
+//   }
+//   return {
+//     props: { results },
+//   }
+// }

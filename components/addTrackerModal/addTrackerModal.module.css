@@ -22,12 +22,12 @@
 .btn {
   background-color: #3255e1;
   color: aliceblue;
-  padding: 10px 5px;
-  width: 180px;
+  padding: 10px 2px;
+  width: 135px;
   border-radius: 7px;
-  margin-top: 10px;
   border-bottom: 2.5px solid #0101ab;
   transition: all 0.3s ease-in-out;
+  font-size: 1.1rem;
 }
 
 .btn:active {
@@ -63,4 +63,68 @@
   text-align: center;
   margin: 9px 0 0px;
   font-size: 1.1rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider::before {
+  position: absolute;
+  content: '';
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.checkbox:checked + .slider {
+  background-color: rgb(183, 11, 62);
+}
+
+.checkbox:checked + .slider::before {
+  transform: translateX(26px);
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 7px;
+  width: 100%;
+}
+
+.toggleBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+}
+
+.private {
+  color: red;
 }

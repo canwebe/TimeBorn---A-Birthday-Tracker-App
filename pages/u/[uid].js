@@ -10,10 +10,14 @@ import { months } from '../../data/data'
 import UserFriendCard from '../../components/userFriendCard'
 import { useAuth } from '../../contexts/authContext'
 import { useRouter } from 'next/router'
+import BackBtn from '../../components/backBtn'
 
-export default function UserProfile({ userData, friendLists, userUid }) {
-  // const [userData, setUserData] = useState(userDetails)
+export default function UserProfile() {
+  const [userData, setUserData] = useState(null)
+  const [friendLists, setFriendLists] = useState([])
   const router = useRouter()
+  const userUid = router.query.uid
+
   const { user } = useAuth()
   const [date, setDate] = useState('')
   const [isLoading, setIsLoading] = useState('Add to Track List')
@@ -23,7 +27,7 @@ export default function UserProfile({ userData, friendLists, userUid }) {
     try {
       const slug = userData.name + userData.day + userData.month
       await saveTrackerToOwn(
-        userUid,
+        user?.uid,
         slug,
         userData.day,
         userData.month,
@@ -32,20 +36,32 @@ export default function UserProfile({ userData, friendLists, userUid }) {
       setIsLoading('Saved to Track List')
     } catch (error) {
       console.log(error)
-      setIsLoading('Add to Track List')
+      setIsLoading('Add him to Track')
+    }
+  }
+
+  const fetchData = async () => {
+    try {
+      const res1 = await fetchUserData(userUid)
+      const res2 = await getTrackdetails(userUid, true)
+      setUserData(res1)
+      setFriendLists(res2)
+      if (res1?.day) {
+        setDate(res1.day + ' ' + months[parseInt(res1.month)])
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
 
   useEffect(() => {
-    if (userData?.day) {
-      setDate(userData.day + ' ' + months[parseInt(userData.month)])
+    if (user?.uid === userUid) {
+      router.replace('/profile')
     }
-  }, [userData])
+  }, [userUid])
 
   useEffect(() => {
-    if (user?.uid === userUid) {
-      router.replace(`/profile/${userUid}`)
-    }
+    fetchData()
   }, [userUid])
 
   return (
@@ -63,7 +79,7 @@ export default function UserProfile({ userData, friendLists, userUid }) {
               alt='My Avatar Image'
             />
           </div>
-          <p className={styles.name}>Golam Rabbani</p>
+          <p className={styles.name}>{userData.name}</p>
           {date ? (
             <>
               <p className={styles.dob}>
@@ -81,38 +97,43 @@ export default function UserProfile({ userData, friendLists, userUid }) {
             <p className={styles.nodob}>No Bithdate Given</p>
           )}
           <div className={styles.friendListWrapper}>
-            {friendLists.map((item) => (
-              <UserFriendCard
-                key={item.slug}
-                name={item.name}
-                slug={item.slug}
-                day={item.day}
-                month={item.month}
-                uid={user?.uid}
-              />
-            ))}
+            {friendLists.length > 0 ? (
+              friendLists.map((item) => (
+                <UserFriendCard
+                  key={item.slug}
+                  name={item.name}
+                  slug={item.slug}
+                  day={item.day}
+                  month={item.month}
+                  uid={user?.uid}
+                />
+              ))
+            ) : (
+              <p className={styles.noData}>No Public Data Found</p>
+            )}
           </div>
         </div>
       )}
+      <BackBtn />
     </div>
   )
 }
 
-export async function getServerSideProps({ query: { uid } }) {
-  let userData = null
-  let friendLists = []
-  try {
-    userData = await fetchUserData(uid)
-    friendLists = await getTrackdetails(uid, true)
-  } catch (error) {
-    console.log(error)
-  }
+// export async function getServerSideProps({ query: { uid } }) {
+//   let userData = null
+//   let friendLists = []
+//   try {
+//     userData = await fetchUserData(uid)
+//     friendLists = await getTrackdetails(uid, true)
+//   } catch (error) {
+//     console.log(error)
+//   }
 
-  return {
-    props: {
-      userData,
-      friendLists,
-      userUid: uid,
-    },
-  }
-}
+//   return {
+//     props: {
+//       userData,
+//       friendLists,
+//       userUid: uid,
+//     },
+//   }
+// }

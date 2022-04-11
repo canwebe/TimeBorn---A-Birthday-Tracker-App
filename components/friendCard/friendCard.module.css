@@ -2,7 +2,6 @@
   background-color: #bed2e3;
   padding: 10px 10px 10px 20px;
   border-radius: 7px;
-  min-height: 79.6px;
 }
 
 .friendName {
@@ -15,10 +14,12 @@
 }
 
 .bottomDiv {
-  margin-top: 8px;
+  margin-top: 12px;
   display: flex;
   justify-content: flex-end;
-  gap: 15px;
+  align-items: center;
+  gap: 9px;
+  min-height: 24px;
 }
 
 .updateBtn {

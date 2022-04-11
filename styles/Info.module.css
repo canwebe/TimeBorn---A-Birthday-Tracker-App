@@ -52,26 +52,6 @@
   background-color: rgb(17, 44, 177);
 }
 
-.backBtn {
-  position: fixed;
-  bottom: 30px;
-  right: 20px;
-  background-color: var(--color-orange);
-  padding: 7px 20px 7px 10px;
-  display: flex;
-  align-items: center;
-  color: white;
-  font-size: 1.3rem;
-  border-radius: 30px;
-  font-weight: 600;
-  box-shadow: 2px 3px 18px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s;
-}
-
-.backBtn:active {
-  background-color: #e35757;
-}
-
 .btnWrapper {
   display: flex;
   gap: 12px;
