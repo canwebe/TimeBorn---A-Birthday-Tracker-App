@@ -2,10 +2,12 @@
   background-color: #bed2e3;
   padding: 10px 10px 10px 20px;
   border-radius: 7px;
+  position: relative;
 }
 
 .friendName {
   font-weight: 600;
+  width: 236px;
 }
 
 .friendDate {
@@ -53,4 +55,20 @@
 .downarrow {
   font-size: 1.4rem;
   margin-left: -5px;
+}
+
+.delete,
+.deleteWait {
+  position: absolute;
+  font-size: 1.6rem;
+  top: 6px;
+  right: 5px;
+}
+
+.delete {
+  color: #ac2121;
+}
+
+.deleteWait {
+  color: #e07a7a;
 }
