@@ -1,8 +1,14 @@
 import { useState } from 'react'
 import { months } from '../../data/data'
-import { updatePrivacy } from '../../helpers/firebase'
+import { deleteTracker, updatePrivacy } from '../../helpers/firebase'
 import styles from './friendCard.module.css'
-import { MdVisibility, MdVisibilityOff, MdArrowDropDown } from 'react-icons/md'
+import {
+  MdVisibility,
+  MdVisibilityOff,
+  MdArrowDropDown,
+  MdHourglassFull,
+  MdDelete,
+} from 'react-icons/md'
 export default function FriendCard({
   name,
   day,
@@ -14,6 +20,7 @@ export default function FriendCard({
 }) {
   const [view, setView] = useState(privacy)
   const [isLoading, setIsLoading] = useState(false)
+  const [isDltLoading, setIsDltLoading] = useState(false)
 
   const handleUpdate = async () => {
     setIsLoading(true)
@@ -28,9 +35,30 @@ export default function FriendCard({
       setIsLoading(false)
     }
   }
+
+  const handleDelete = async () => {
+    setIsDltLoading(true)
+    const sure = confirm('Are you sure to delete this?')
+    if (sure) {
+      try {
+        await deleteTracker(uid, slug)
+        setIsDltLoading(false)
+        await fetchFriends()
+      } catch (error) {
+        setIsDltLoading(false)
+      }
+    } else {
+      return
+    }
+  }
+
   return (
     <div className={styles.friendCard}>
-      {console.log('Privacy', privacy, view, name)}
+      {isDltLoading ? (
+        <MdHourglassFull className={styles.deleteWait} />
+      ) : (
+        <MdDelete onClick={handleDelete} className={styles.delete} />
+      )}
       <p className={styles.friendName}>{name}</p>
       <div className={styles.bottomDiv}>
         <p className={styles.friendDate}>
