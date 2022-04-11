@@ -59,3 +59,9 @@
   padding: 20px 20px 40px;
   border-radius: 7px;
 }
+
+.noData {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 20px;
+}

@@ -15,6 +15,7 @@ import { deleteTracker, fetchNote, fetchWishes } from '../helpers/firebase'
 import { useEffect, useRef, useState } from 'react'
 import Modal from '../components/modal'
 import AddNotes from '../components/addNotes'
+import BackBtn from '../components/backBtn'
 
 export default function Info({ result }) {
   const router = useRouter()
@@ -213,9 +214,7 @@ export default function Info({ result }) {
         </div>
         <h1>Suggested Gift Items</h1>
       </div>
-      <div onClick={() => router.back()} className={styles.backBtn}>
-        <MdChevronLeft /> Back
-      </div>
+      <BackBtn />
       {isModal && (
         <Modal setIsModal={setIsModal}>
           <AddNotes

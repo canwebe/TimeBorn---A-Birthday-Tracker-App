@@ -10,6 +10,7 @@ import { months } from '../../data/data'
 import UserFriendCard from '../../components/userFriendCard'
 import { useAuth } from '../../contexts/authContext'
 import { useRouter } from 'next/router'
+import BackBtn from '../../components/backBtn'
 
 export default function UserProfile({ userData, friendLists, userUid }) {
   // const [userData, setUserData] = useState(userDetails)
@@ -63,7 +64,7 @@ export default function UserProfile({ userData, friendLists, userUid }) {
               alt='My Avatar Image'
             />
           </div>
-          <p className={styles.name}>Golam Rabbani</p>
+          <p className={styles.name}>{userData.name}</p>
           {date ? (
             <>
               <p className={styles.dob}>
@@ -81,19 +82,24 @@ export default function UserProfile({ userData, friendLists, userUid }) {
             <p className={styles.nodob}>No Bithdate Given</p>
           )}
           <div className={styles.friendListWrapper}>
-            {friendLists.map((item) => (
-              <UserFriendCard
-                key={item.slug}
-                name={item.name}
-                slug={item.slug}
-                day={item.day}
-                month={item.month}
-                uid={user?.uid}
-              />
-            ))}
+            {friendLists.length > 0 ? (
+              friendLists.map((item) => (
+                <UserFriendCard
+                  key={item.slug}
+                  name={item.name}
+                  slug={item.slug}
+                  day={item.day}
+                  month={item.month}
+                  uid={user?.uid}
+                />
+              ))
+            ) : (
+              <p className={styles.noData}>No Public Data Found</p>
+            )}
           </div>
         </div>
       )}
+      <BackBtn />
     </div>
   )
 }
