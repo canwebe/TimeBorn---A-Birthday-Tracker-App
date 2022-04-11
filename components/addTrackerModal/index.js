@@ -7,6 +7,7 @@ export default function AddTrackerModal({ setIsModal, uid, handleData }) {
   const [name, setName] = useState('')
   const [day, setDay] = useState('')
   const [month, setMonth] = useState('1')
+  const [privacy, setPrivacy] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 
@@ -18,7 +19,7 @@ export default function AddTrackerModal({ setIsModal, uid, handleData }) {
     e.preventDefault()
     setIsLoading(true)
     try {
-      await trackBirthday(uid, name, day, month)
+      await trackBirthday(uid, name, day, month, privacy)
       setName('')
       setDay('')
       setMonth('1')
@@ -91,9 +92,29 @@ export default function AddTrackerModal({ setIsModal, uid, handleData }) {
             ))}
           </select>
         </div>
-        <button disabled={isLoading} className={styles.btn} type='submit'>
-          {isLoading ? 'Loading' : 'Add Details'}
-        </button>
+        <div className={styles.btnWrapper}>
+          <span className={styles.toggleBtn}>
+            <label className={styles.switch}>
+              <input
+                className={styles.checkbox}
+                type='checkbox'
+                checked={privacy}
+                onChange={() => setPrivacy((prev) => !prev)}
+              />
+              <span className={styles.slider} />
+            </label>
+
+            {privacy ? (
+              <span className={styles.private}>private</span>
+            ) : (
+              <span className={styles.public}>public</span>
+            )}
+          </span>
+          {console.log(privacy)}
+          <button disabled={isLoading} className={styles.btn} type='submit'>
+            {isLoading ? 'Loading' : 'Add Details'}
+          </button>
+        </div>
       </form>
     </>
   )

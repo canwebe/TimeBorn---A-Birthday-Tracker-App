@@ -15,13 +15,13 @@ import {
 } from 'firebase/firestore'
 import { auth, db } from '../lib/firebase'
 
-export const trackBirthday = async (uid, name, day, month) => {
+export const trackBirthday = async (uid, name, day, month, privacy = true) => {
   await addDoc(collection(db, `users/${uid}/trackers`), {
     name,
     day,
     month,
     slug: name + day + month,
-    privacy: true,
+    privacy,
   })
 }
 

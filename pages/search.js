@@ -47,31 +47,9 @@ export default function Search() {
           className={styles.input}
           onChange={(e) => setSearchString(e.target.value)}
         />
-        {searchString.length > 3 && data.length > 0 ? (
-          searchList.length > 0 && (
-            <div className={styles.searchListWrapper}>
-              {searchList.map((item, i) => (
-                <Link href={`/u/${item.uid}`} key={i}>
-                  <a className={styles.userCard}>
-                    <div className={styles.avatarImg}>
-                      <Image
-                        className={styles.img}
-                        src={item.photoURL}
-                        width='100px'
-                        height='100px'
-                        layout='responsive'
-                        alt='avatar img'
-                      />
-                    </div>
-                    <p className={styles.name}>{item.name}</p>
-                  </a>
-                </Link>
-              ))}
-            </div>
-          )
-        ) : (
+        {searchString.length > 3 && searchList.length > 0 && (
           <div className={styles.searchListWrapper}>
-            {data.slice(0, 6).map((item, i) => (
+            {searchList.map((item, i) => (
               <Link href={`/u/${item.uid}`} key={i}>
                 <a className={styles.userCard}>
                   <div className={styles.avatarImg}>

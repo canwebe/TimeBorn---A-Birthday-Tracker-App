@@ -36,7 +36,7 @@ export default function UserProfile() {
       setIsLoading('Saved to Track List')
     } catch (error) {
       console.log(error)
-      setIsLoading('Add to Track List')
+      setIsLoading('Add him to Track')
     }
   }
 
