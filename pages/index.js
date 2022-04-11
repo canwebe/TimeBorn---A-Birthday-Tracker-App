@@ -14,19 +14,21 @@ import CountCardHour from '../components/countCards/countCardHour'
 import { useAuth } from '../contexts/authContext'
 import { getTrackdetails } from '../helpers/firebase'
 import AddTrackerModal from '../components/addTrackerModal'
+import SkeletonHome from '../components/skeleton/skeletonHome'
 
 const Home = () => {
-  const router = useRouter()
-  const [isModal, setIsModal] = useState(false)
-  // const [data, setData] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
   const [orgData, setOrgData] = useState({
     below2: [],
     main: [],
     empty: true,
   })
-  const [isLoading, setIsLoading] = useState(true)
+  const [isModal, setIsModal] = useState(false)
+  const router = useRouter()
+
+  // const [data, setData] = useState([])
+
   const { user } = useAuth()
-  console.log(user)
   //Times
   const sec = 1000
   const min = sec * 60
@@ -101,9 +103,8 @@ const Home = () => {
 
   return (
     <div className='wrapper'>
-      {console.log(orgData)}
       {isLoading ? (
-        <p className={styles.loading}>Loading..</p>
+        <SkeletonHome />
       ) : orgData.empty ? (
         <p className={styles.loading}>
           No Data Found, Please Add Some People Here
