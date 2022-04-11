@@ -85,6 +85,11 @@
   color: white;
   border-radius: 9px;
   margin-left: 7px;
+  transition: all 0.3s;
+}
+
+.doneBtn:active {
+  background-color: rgb(16, 16, 186);
 }
 
 .friendListWrapper {
@@ -92,7 +97,43 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin: 27px 0;
+  margin-bottom: 27px;
   padding: 20px 20px 40px;
   border-radius: 7px;
+}
+
+.addDobBtn {
+  font-size: 0.97rem;
+  padding: 5px 20px;
+  border-radius: 9px;
+  background-color: lightblue;
+  margin: 10px auto;
+  display: block;
+  color: rgb(0, 14, 107);
+}
+
+.searchbox {
+  margin: 27px auto 15px;
+  width: 80%;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid darkgreen;
+  background-color: transparent;
+  font-size: 1.08rem;
+  display: block;
+  color: darkgreen;
+}
+
+.searchbox::placeholder {
+  color: darkgreen;
+}
+
+.searchbox:focus {
+  outline: none;
+  border-color: rgb(26, 0, 128);
+  color: rgb(26, 0, 128);
+}
+
+.searchbox:focus::placeholder {
+  opacity: 0.4;
 }

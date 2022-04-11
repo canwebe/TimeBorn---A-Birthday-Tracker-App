@@ -1,0 +1,61 @@
+.user {
+  padding: 77px 0;
+}
+
+.photoWrapper {
+  width: 130px;
+  background-color: rgb(255, 255, 255);
+  height: 130px;
+  border-radius: 50%;
+  margin: 25px auto 12px;
+  padding: 5px;
+}
+
+.avatarImg {
+  border-radius: 50%;
+}
+.name {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.dob,
+.nodob {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.nodob {
+  opacity: 0.5;
+}
+
+.dobSpan {
+  font-weight: 700;
+}
+
+.addToMineBtnBig {
+  background-color: var(--color-blue-primary);
+  padding: 8px;
+  width: 174px;
+  border-radius: 9px;
+  color: white;
+  margin: 10px auto 0;
+  display: block;
+  font-size: 0.97rem;
+  border-bottom: 1px solid rgb(0, 0, 150);
+  transition: all 0.3s;
+}
+
+.addToMineBtnBig:active {
+  background-color: rgb(16, 16, 186);
+}
+
+.friendListWrapper {
+  background-color: #65a36d;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 35px auto;
+  padding: 20px 20px 40px;
+  border-radius: 7px;
+}

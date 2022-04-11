@@ -1,0 +1,36 @@
+.card {
+  background-color: #bed2e3;
+  padding: 10px 10px 10px 20px;
+  border-radius: 7px;
+  min-height: 79.6px;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.date {
+  font-size: 1rem;
+  margin-right: auto;
+}
+
+.bottomDiv {
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.saveBtn {
+  background-color: rgb(176 169 193);
+  font-size: 0.95rem;
+  color: #696464;
+  padding: 4px;
+  width: 90px;
+  border-radius: 7px;
+  transition: all 0.3s;
+}
+
+.saveBtn:active {
+  background-color: rgb(137, 146, 197);
+}

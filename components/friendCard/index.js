@@ -48,15 +48,15 @@ export default function FriendCard({
 
         <div onClick={() => setView((prev) => !prev)} className={styles.view}>
           {view ? (
-            <span className={styles.public}>
-              <MdVisibility />
-              Public
-              <MdArrowDropDown className={styles.downarrow} />
-            </span>
-          ) : (
             <span className={styles.private}>
               <MdVisibilityOff />
               Private
+              <MdArrowDropDown className={styles.downarrow} />
+            </span>
+          ) : (
+            <span className={styles.public}>
+              <MdVisibility />
+              Public
               <MdArrowDropDown className={styles.downarrow} />
             </span>
           )}
