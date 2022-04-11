@@ -12,9 +12,12 @@ import { useAuth } from '../../contexts/authContext'
 import { useRouter } from 'next/router'
 import BackBtn from '../../components/backBtn'
 
-export default function UserProfile({ userData, friendLists, userUid }) {
-  // const [userData, setUserData] = useState(userDetails)
+export default function UserProfile() {
+  const [userData, setUserData] = useState(null)
+  const [friendLists, setFriendLists] = useState([])
   const router = useRouter()
+  const userUid = router.query.uid
+
   const { user } = useAuth()
   const [date, setDate] = useState('')
   const [isLoading, setIsLoading] = useState('Add to Track List')
@@ -24,7 +27,7 @@ export default function UserProfile({ userData, friendLists, userUid }) {
     try {
       const slug = userData.name + userData.day + userData.month
       await saveTrackerToOwn(
-        userUid,
+        user?.uid,
         slug,
         userData.day,
         userData.month,
@@ -37,16 +40,28 @@ export default function UserProfile({ userData, friendLists, userUid }) {
     }
   }
 
-  useEffect(() => {
-    if (userData?.day) {
-      setDate(userData.day + ' ' + months[parseInt(userData.month)])
+  const fetchData = async () => {
+    try {
+      const res1 = await fetchUserData(userUid)
+      const res2 = await getTrackdetails(userUid, true)
+      setUserData(res1)
+      setFriendLists(res2)
+      if (res1?.day) {
+        setDate(res1.day + ' ' + months[parseInt(res1.month)])
+      }
+    } catch (error) {
+      console.log(error)
     }
-  }, [userData])
+  }
 
   useEffect(() => {
     if (user?.uid === userUid) {
-      router.replace(`/profile/${userUid}`)
+      router.replace('/profile')
     }
+  }, [userUid])
+
+  useEffect(() => {
+    fetchData()
   }, [userUid])
 
   return (
@@ -104,21 +119,21 @@ export default function UserProfile({ userData, friendLists, userUid }) {
   )
 }
 
-export async function getServerSideProps({ query: { uid } }) {
-  let userData = null
-  let friendLists = []
-  try {
-    userData = await fetchUserData(uid)
-    friendLists = await getTrackdetails(uid, true)
-  } catch (error) {
-    console.log(error)
-  }
+// export async function getServerSideProps({ query: { uid } }) {
+//   let userData = null
+//   let friendLists = []
+//   try {
+//     userData = await fetchUserData(uid)
+//     friendLists = await getTrackdetails(uid, true)
+//   } catch (error) {
+//     console.log(error)
+//   }
 
-  return {
-    props: {
-      userData,
-      friendLists,
-      userUid: uid,
-    },
-  }
-}
+//   return {
+//     props: {
+//       userData,
+//       friendLists,
+//       userUid: uid,
+//     },
+//   }
+// }

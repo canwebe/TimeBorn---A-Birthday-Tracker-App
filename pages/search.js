@@ -43,14 +43,36 @@ export default function Search() {
           required
           placeholder='Search Users Here'
           value={searchString}
+          autoFocus
           className={styles.input}
           onChange={(e) => setSearchString(e.target.value)}
         />
-        {console.log(data, searchList, searchString)}
-        {searchString.length > 3 && searchList.length > 0 && (
+        {searchString.length > 3 && data.length > 0 ? (
+          searchList.length > 0 && (
+            <div className={styles.searchListWrapper}>
+              {searchList.map((item, i) => (
+                <Link href={`/u/${item.uid}`} key={i}>
+                  <a className={styles.userCard}>
+                    <div className={styles.avatarImg}>
+                      <Image
+                        className={styles.img}
+                        src={item.photoURL}
+                        width='100px'
+                        height='100px'
+                        layout='responsive'
+                        alt='avatar img'
+                      />
+                    </div>
+                    <p className={styles.name}>{item.name}</p>
+                  </a>
+                </Link>
+              ))}
+            </div>
+          )
+        ) : (
           <div className={styles.searchListWrapper}>
-            {searchList.map((item) => (
-              <Link href={`/u/${item.uid}`} key={item.slug}>
+            {data.slice(0, 6).map((item, i) => (
+              <Link href={`/u/${item.uid}`} key={i}>
                 <a className={styles.userCard}>
                   <div className={styles.avatarImg}>
                     <Image
