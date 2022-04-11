@@ -6,6 +6,7 @@ import { useAuth } from '../contexts/authContext'
 import { useRouter } from 'next/router'
 import styles from '../styles/Login.module.css'
 import { FcGoogle } from 'react-icons/fc'
+import { checkNewUser, userDataEdit } from '../helpers/firebase'
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false)
@@ -13,17 +14,27 @@ export default function Login() {
   const { user } = useAuth()
   const router = useRouter()
 
-  const handleSignin = () => {
+  const handleSignin = async () => {
     setIsLoading(true)
-    signInWithPopup(auth, googleProvider)
-      .then(() => {
-        setIsLoading(false)
-        router.push('/')
-      })
-      .catch((err) => {
-        setIsLoading(false)
-        console.log('Something went wrong', err)
-      })
+    try {
+      const result = await signInWithPopup(auth, googleProvider)
+      const uid = result.user.uid
+      const isNew = await checkNewUser(uid)
+      if (isNew) {
+        const payload = {
+          uid,
+          photoURL: result.user?.photoURL,
+          name: result.user?.displayName,
+          nameLower: result.user?.displayName.toLowerCase(),
+        }
+        await userDataEdit(uid, payload)
+      }
+      setIsLoading(false)
+      router.push('/')
+    } catch (error) {
+      console.log('Something went wrong in sign in', error)
+      setIsLoading(false)
+    }
   }
 
   useEffect(() => {

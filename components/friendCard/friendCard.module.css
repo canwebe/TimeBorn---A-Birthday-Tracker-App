@@ -28,6 +28,11 @@
   padding: 3px;
   width: 70px;
   border-radius: 7px;
+  transition: all 0.3s;
+}
+
+.updateBtn:active {
+  background-color: rgb(16, 16, 186);
 }
 
 .public,

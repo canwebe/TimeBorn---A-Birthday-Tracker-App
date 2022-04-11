@@ -1,3 +1,4 @@
+import { async } from '@firebase/util'
 import { updateProfile } from 'firebase/auth'
 import {
   addDoc,
@@ -6,6 +7,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  orderBy,
   query,
   setDoc,
   updateDoc,
@@ -19,12 +21,26 @@ export const trackBirthday = async (uid, name, day, month) => {
     day,
     month,
     slug: name + day + month,
-    privacy: false,
+    privacy: true,
   })
 }
 
-export const getTrackdetails = async (uid) => {
-  const snapshot = await getDocs(collection(db, `users/${uid}/trackers`))
+export const getTrackdetails = async (uid, privacy) => {
+  let q = collection(db, `users/${uid}/trackers`)
+  if (privacy) {
+    q = query(q, where('privacy', '==', false))
+  }
+  const snapshot = await getDocs(q)
+  if (!snapshot.empty) {
+    return snapshot.docs.map((item) => item.data())
+  } else {
+    return []
+  }
+}
+
+export const getTrackdetailsOrder = async (uid, order) => {
+  const q = query(collection(db, `users/${uid}/trackers`), orderBy(order))
+  const snapshot = await getDocs(q)
   if (!snapshot.empty) {
     return snapshot.docs.map((item) => item.data())
   } else {
@@ -84,21 +100,19 @@ export const fetchWishes = async (tag) => {
   }
 }
 
-export const userDateEdit = async (uid, day, month) => {
+export const userDataEdit = async (uid, payload) => {
   const ref = doc(db, 'users', uid)
   console.log(ref)
-  await setDoc(
-    ref,
-    {
-      day,
-      month,
-    },
-
-    { merge: true }
-  )
+  await setDoc(ref, payload, { merge: true })
 }
 
-export const fetchUserDob = async (uid) => {
+export const checkNewUser = async (uid) => {
+  const q = query(collection(db, 'users'), where('uid', '==', uid))
+  const res = await getDocs(q)
+  return res.empty
+}
+
+export const fetchUserData = async (uid) => {
   const ref = doc(db, 'users', uid)
   const res = await getDoc(ref)
   if (res.exists) {
@@ -106,10 +120,11 @@ export const fetchUserDob = async (uid) => {
   }
 }
 
-export const updateUserName = async (name) => {
+export const updateUserName = async (uid, name) => {
   await updateProfile(auth.currentUser, {
     displayName: name,
   })
+  await userDataEdit(uid, { name })
 }
 
 export const updatePrivacy = async (uid, slug, privacy) => {
@@ -122,5 +137,28 @@ export const updatePrivacy = async (uid, slug, privacy) => {
     await updateDoc(snapshot.docs[0].ref, {
       privacy,
     })
+  }
+}
+
+export const saveTrackerToOwn = async (uid, slug, day, month, name) => {
+  const q = query(
+    collection(db, `users/${uid}/trackers`),
+    where('slug', '==', slug)
+  )
+  const snapshot = await getDocs(q)
+  if (snapshot.empty) {
+    await trackBirthday(uid, name, day, month)
+  }
+}
+
+export const getSearchResults = async (name, uid) => {
+  const q = query(
+    collection(db, 'users'),
+    where('name', '==', name.toLowerCase()),
+    where('uid', '!=', uid)
+  )
+  const snapshot = await getDocs(q)
+  if (!snapshot.empty) {
+    return snapshot.docs.map((item) => item.data())
   }
 }

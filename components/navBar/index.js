@@ -30,7 +30,7 @@ export default function NavBar() {
             className={styles.menu}
             onClick={() => setIsOpen(true)}
           />
-          <Link href='/profile'>
+          <Link href={`/profile/${user?.uid}`}>
             <a className={styles.avatarImg}>
               {user && (
                 <Image
@@ -62,7 +62,7 @@ export default function NavBar() {
             <NavLink setIsOpen={setIsOpen} href='/calender'>
               Calender
             </NavLink>
-            <NavLink setIsOpen={setIsOpen} href='/profile'>
+            <NavLink setIsOpen={setIsOpen} href={`/profile/${user?.uid}`}>
               MyProfile
             </NavLink>
           </div>
