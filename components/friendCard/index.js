@@ -48,6 +48,7 @@ export default function FriendCard({
         setIsDltLoading(false)
       }
     } else {
+      setIsDltLoading(false)
       return
     }
   }
