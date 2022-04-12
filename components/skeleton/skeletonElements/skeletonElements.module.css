@@ -6,7 +6,8 @@
 }
 
 .text,
-.shortText {
+.shortText,
+.littleText {
   width: 100%;
   height: 18px;
   background-color: #5c9764;
@@ -14,6 +15,18 @@
 
 .shortText {
   width: 60%;
+}
+
+.subtext {
+  width: 30%;
+  height: 12px;
+  margin-top: 16px;
+  background-color: #5c9764;
+}
+
+.littleText {
+  width: 40%;
+  margin-bottom: 6px;
 }
 
 .title,
@@ -30,9 +43,10 @@
 }
 
 .avatar {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
+  background-color: #5c9764;
 }
 
 .card {
