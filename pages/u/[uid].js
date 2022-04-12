@@ -11,12 +11,13 @@ import UserFriendCard from '../../components/userFriendCard'
 import { useAuth } from '../../contexts/authContext'
 import { useRouter } from 'next/router'
 import BackBtn from '../../components/backBtn'
+import SkeletonProfile from '../../components/skeleton/skeletoonProfile'
 
-export default function UserProfile() {
-  const [userData, setUserData] = useState(null)
-  const [friendLists, setFriendLists] = useState([])
+export default function UserProfile({ userData, friendLists, userUid }) {
+  // const [userData, setUserData] = useState(null)
+  // const [friendLists, setFriendLists] = useState([])
   const router = useRouter()
-  const userUid = router.query.uid
+  // const userUid = router.query.uid
 
   const { user } = useAuth()
   const [date, setDate] = useState('')
@@ -60,80 +61,86 @@ export default function UserProfile() {
     }
   }, [userUid])
 
-  useEffect(() => {
-    fetchData()
-  }, [userUid])
+  // useEffect(() => {
+  //   fetchData()
+  // }, [userUid])
 
   return (
     <div className='wrapper'>
       {console.log(userData, friendLists)}
-      {userData && (
-        <div className={styles.user}>
-          <div className={styles.photoWrapper}>
-            <Image
-              className={styles.avatarImg}
-              src={userData?.photoURL}
-              width='200px'
-              height='200px'
-              layout='responsive'
-              alt='My Avatar Image'
-            />
-          </div>
-          <p className={styles.name}>{userData.name}</p>
-          {date ? (
-            <>
-              <p className={styles.dob}>
-                <span className={styles.dobSpan}>DOB :</span> {date}{' '}
-              </p>
-              <button
-                onClick={handleSave}
-                disabled={isLoading !== 'Add to Track List'}
-                className={styles.addToMineBtnBig}
-              >
-                {isLoading}
-              </button>
-            </>
-          ) : (
-            <p className={styles.nodob}>No Bithdate Given</p>
-          )}
-          <div className={styles.friendListWrapper}>
-            {friendLists.length > 0 ? (
-              friendLists.map((item) => (
-                <UserFriendCard
-                  key={item.slug}
-                  name={item.name}
-                  slug={item.slug}
-                  day={item.day}
-                  month={item.month}
-                  uid={user?.uid}
-                />
-              ))
+
+      <div className={styles.user}>
+        {userData ? (
+          <>
+            <div className={styles.photoWrapper}>
+              <Image
+                className={styles.avatarImg}
+                src={userData?.photoURL}
+                width='200px'
+                height='200px'
+                layout='responsive'
+                alt='My Avatar Image'
+              />
+            </div>
+            <p className={styles.name}>{userData.name}</p>
+            {date ? (
+              <>
+                <p className={styles.dob}>
+                  <span className={styles.dobSpan}>DOB :</span> {date}{' '}
+                </p>
+                <button
+                  onClick={handleSave}
+                  disabled={isLoading !== 'Add to Track List'}
+                  className={styles.addToMineBtnBig}
+                >
+                  {isLoading}
+                </button>
+              </>
             ) : (
-              <p className={styles.noData}>No Public Data Found</p>
+              <p className={styles.nodob}>No Bithdate Given</p>
             )}
-          </div>
-        </div>
-      )}
+            <div className={styles.friendListWrapper}>
+              {friendLists.length > 0 ? (
+                friendLists.map((item) => (
+                  <UserFriendCard
+                    key={item.slug}
+                    name={item.name}
+                    slug={item.slug}
+                    day={item.day}
+                    month={item.month}
+                    uid={user?.uid}
+                  />
+                ))
+              ) : (
+                <p className={styles.noData}>No Public Data Found</p>
+              )}
+            </div>
+          </>
+        ) : (
+          <SkeletonProfile user />
+        )}
+      </div>
+
       <BackBtn />
     </div>
   )
 }
 
-// export async function getServerSideProps({ query: { uid } }) {
-//   let userData = null
-//   let friendLists = []
-//   try {
-//     userData = await fetchUserData(uid)
-//     friendLists = await getTrackdetails(uid, true)
-//   } catch (error) {
-//     console.log(error)
-//   }
+export async function getServerSideProps({ query: { uid } }) {
+  let userData = null
+  let friendLists = []
+  try {
+    userData = await fetchUserData(uid)
+    friendLists = await getTrackdetails(uid, true)
+  } catch (error) {
+    console.log(error)
+  }
 
-//   return {
-//     props: {
-//       userData,
-//       friendLists,
-//       userUid: uid,
-//     },
-//   }
-// }
+  return {
+    props: {
+      userData,
+      friendLists,
+      userUid: uid,
+    },
+  }
+}
