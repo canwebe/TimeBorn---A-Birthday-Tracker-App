@@ -15,12 +15,14 @@
   font-size: 1.3rem;
   border-radius: 7px;
   background-color: #c9e2f3;
-  box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.15);
+  background-color: #c9f3d4;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.12);
   color: #343434;
 }
 
 .input:focus {
-  outline-color: rgb(13, 111, 37);
+  outline: none;
+  box-shadow: 2px 4px 24px rgba(0, 0, 0, 0.15);
 }
 
 .input::placeholder {
@@ -58,4 +60,10 @@
 
 .name {
   font-weight: 600;
+}
+
+.searchSvg {
+  width: 300px;
+  margin: 140px auto 30px;
+  filter: opacity(0.3);
 }

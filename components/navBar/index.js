@@ -61,7 +61,7 @@ export default function NavBar() {
             </NavLink>
 
             <NavLink setIsOpen={setIsOpen} href='/profile'>
-              MyProfile
+              Profile
             </NavLink>
           </div>
           <button

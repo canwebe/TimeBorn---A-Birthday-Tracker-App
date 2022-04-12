@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/authContext'
 import { getAllUsers, getSearchResults } from '../helpers/firebase'
 import Image from 'next/image'
 import styles from '../styles/Search.module.css'
+import Bg from '../public/search.svg'
 
 export default function Search() {
   const [data, setData] = useState([])
@@ -47,7 +48,8 @@ export default function Search() {
           className={styles.input}
           onChange={(e) => setSearchString(e.target.value)}
         />
-        {searchString.length > 3 && searchList.length > 0 && (
+
+        {searchString.length > 3 && searchList.length > 0 ? (
           <div className={styles.searchListWrapper}>
             {searchList.map((item, i) => (
               <Link href={`/u/${item.uid}`} key={i}>
@@ -66,6 +68,16 @@ export default function Search() {
                 </a>
               </Link>
             ))}
+          </div>
+        ) : (
+          <div className={styles.searchSvg}>
+            <Image
+              src={Bg}
+              width='300px'
+              height='300px'
+              layout='responsive'
+              alt='search img'
+            />
           </div>
         )}
       </div>
