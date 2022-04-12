@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import styles from '../styles/Login.module.css'
 import { FcGoogle } from 'react-icons/fc'
 import { checkNewUser, userDataEdit } from '../helpers/firebase'
+import Image from 'next/image'
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false)
@@ -44,20 +45,41 @@ export default function Login() {
   }, [user])
 
   return (
-    <div className={styles.loginDiv}>
-      <div className={styles.loginBox}>
-        <p className={styles.welcomeText}>Welcome To</p>
-        <p className={styles.timeBorn}>TimeBorn</p>
-        <button onClick={handleSignin} className={styles.button}>
-          {isLoading ? (
-            'Loading..'
-          ) : (
-            <>
-              <FcGoogle /> Sign In With Google{' '}
-            </>
-          )}
-        </button>
+    <>
+      <div className={styles.clipImg}>
+        <Image
+          src='/clipart.png'
+          alt='bg image'
+          width='300px'
+          height='70px'
+          layout='responsive'
+        />
       </div>
-    </div>
+      <div className={styles.loginDiv}>
+        <div className={styles.loginBox}>
+          <div className={styles.bgimg}>
+            <Image
+              src='/loginBg.svg'
+              alt='bg image'
+              width='300px'
+              height='300px'
+              layout='responsive'
+            />
+          </div>
+
+          <p className={styles.welcomeText}>Welcome To</p>
+          <p className={styles.timeBorn}>TimeBorn</p>
+          <button onClick={handleSignin} className={styles.button}>
+            {isLoading ? (
+              'Loading..'
+            ) : (
+              <>
+                <FcGoogle /> Sign In With Google{' '}
+              </>
+            )}
+          </button>
+        </div>
+      </div>
+    </>
   )
 }
