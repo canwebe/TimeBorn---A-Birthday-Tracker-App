@@ -1,6 +1,6 @@
 {
   "short_name": "TimeBorn",
-  "name": "TimeBorn - A Birthday Tracker App",
+  "name": "TimeBorn - Birthday Tracker",
   "icons": [
     {
       "src": "favicon.ico",
@@ -29,9 +29,10 @@
       "purpose": "maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#6bcb77",
-  "background_color": "#ff6b6b",
+  "theme_color": "#ff6b6b",
+  "background_color": "#6bcb77",
+  "orientation": "portrait",
   "categories": ["productivity"]
 }

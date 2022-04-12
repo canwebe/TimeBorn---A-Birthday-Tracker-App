@@ -96,10 +96,22 @@ const Home = () => {
     }
   }
 
+  const onClickInstall = async () => {
+    const didInstall = await promptInstall()
+    console.log(didInstall)
+    setIsPwaModal(false)
+  }
+
   // Side Effect
   useEffect(() => {
     handleData()
   }, [])
+
+  useEffect(() => {
+    if (isInstallPromptSupported && !isStandalone) {
+      setIsPwaModal(true)
+    }
+  }, [isInstallPromptSupported])
 
   return (
     <div className='wrapper'>
@@ -149,6 +161,18 @@ const Home = () => {
           />
         </Modal>
       )}
+      {/* {isPwamodal && (
+        <div className='pwaModal'>
+          <span onClick={() => setIsPwaModal(false)}>
+            <MdCancel />
+          </span>
+          <p>For faster experience Install this app</p>
+
+          <button className='installPwa' onClick={onClickInstall}>
+            Install
+          </button>
+        </div>
+      )} */}
     </div>
   )
 }
