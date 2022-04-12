@@ -96,22 +96,10 @@ const Home = () => {
     }
   }
 
-  const onClickInstall = async () => {
-    const didInstall = await promptInstall()
-    console.log(didInstall)
-    setIsPwaModal(false)
-  }
-
   // Side Effect
   useEffect(() => {
     handleData()
   }, [])
-
-  useEffect(() => {
-    if (isInstallPromptSupported && !isStandalone) {
-      setIsPwaModal(true)
-    }
-  }, [isInstallPromptSupported])
 
   return (
     <div className='wrapper'>
