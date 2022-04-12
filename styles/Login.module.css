@@ -61,7 +61,7 @@
 }
 
 .button:active {
-  transform: scale(0.99);
+  transform: scale(0.978);
   box-shadow: 17px 17px 20px #7ab181, -17px -17px 20px #a6efaf;
 }
 
