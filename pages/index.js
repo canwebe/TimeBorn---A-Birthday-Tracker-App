@@ -111,7 +111,6 @@ const Home = () => {
         </p>
       ) : (
         <div className={styles.flexWrapper}>
-          {console.log('org', orgData)}
           {orgData?.below2.length > 0 && (
             <div className={styles.priority}>
               <h1 className={styles.header}>In Two Days</h1>

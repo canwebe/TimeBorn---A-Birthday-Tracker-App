@@ -102,7 +102,7 @@ export const fetchWishes = async (tag) => {
 
 export const userDataEdit = async (uid, payload) => {
   const ref = doc(db, 'users', uid)
-  console.log(ref)
+
   await setDoc(ref, payload, { merge: true })
 }
 

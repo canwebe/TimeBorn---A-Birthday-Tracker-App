@@ -24,7 +24,6 @@ export default function NavBar() {
   return (
     <>
       <nav className={styles.navWrapper}>
-        {console.log(user)}
         <div className={cls('wrapper', styles.nav)}>
           <MdOutlineMenu
             className={styles.menu}

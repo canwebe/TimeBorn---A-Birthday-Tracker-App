@@ -67,8 +67,6 @@ export default function UserProfile({ userData, friendLists, userUid }) {
 
   return (
     <div className='wrapper'>
-      {console.log(userData, friendLists)}
-
       <div className={styles.user}>
         {userData ? (
           <>
