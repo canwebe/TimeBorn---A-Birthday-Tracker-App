@@ -31,8 +31,8 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#6bcb77",
-  "background_color": "#ff6b6b",
+  "background_color": "#6bcb77",
+  "theme_color": "#39ac49",
   "orientation": "portrait",
   "categories": ["productivity"]
 }

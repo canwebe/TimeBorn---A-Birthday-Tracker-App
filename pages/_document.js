@@ -5,7 +5,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta name='theme-color' content='#6bcb77' />
+          <meta name='theme-color' content='#39ac49' />
           <meta
             name='description'
             content='It is a birthday tracker app with added features like birthday wishes,notify events,searching friends and many more.'
