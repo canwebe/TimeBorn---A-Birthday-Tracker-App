@@ -23,15 +23,15 @@
       "sizes": "512x512"
     },
     {
-      "src": "logo384m.png",
+      "src": "logo512m.png",
       "type": "image/png",
-      "sizes": "384x384",
+      "sizes": "512x512",
       "purpose": "maskable"
     }
   ],
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#6bcb77",
+  "background_color": "#90d098",
   "theme_color": "#7dbb85",
   "orientation": "portrait",
   "categories": ["productivity"]
