@@ -1,4 +1,4 @@
-export default function Offline() {
+export default function Fallback() {
   return (
     <div
       className='wrapper'

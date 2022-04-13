@@ -26,9 +26,9 @@ const WB_MANIFEST = self.__WB_MANIFEST
 // Precache fallback route and image
 WB_MANIFEST.push({
   url: '/fallback',
-  revision: '1234567890',
+  revision: '7002691',
 })
-precacheAndRoute(WB_MANIFEST)
+// precacheAndRoute(WB_MANIFEST)
 
 cleanupOutdatedCaches()
 registerRoute(
@@ -38,7 +38,7 @@ registerRoute(
     plugins: [
       new ExpirationPlugin({
         maxEntries: 1,
-        maxAgeSeconds: 60 * 60 * 24 * 2,
+        maxAgeSeconds: 86400,
         purgeOnQuotaError: !0,
       }),
     ],
@@ -76,12 +76,12 @@ registerRoute(
 // disable image cache, so we could observe the placeholder image when offline
 registerRoute(
   /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
-  new CacheFirst({
+  new NetworkOnly({
     cacheName: 'static-image-assets',
     plugins: [
       new ExpirationPlugin({
-        maxEntries: 30,
-        maxAgeSeconds: 60 * 60 * 24 * 2,
+        maxEntries: 64,
+        maxAgeSeconds: 86400,
         purgeOnQuotaError: !0,
       }),
     ],
@@ -95,7 +95,7 @@ registerRoute(
     plugins: [
       new ExpirationPlugin({
         maxEntries: 32,
-        maxAgeSeconds: 60 * 60 * 24 * 2,
+        maxAgeSeconds: 86400,
         purgeOnQuotaError: !0,
       }),
     ],
@@ -109,7 +109,7 @@ registerRoute(
     plugins: [
       new ExpirationPlugin({
         maxEntries: 32,
-        maxAgeSeconds: 60 * 60 * 24 * 2,
+        maxAgeSeconds: 86400,
         purgeOnQuotaError: !0,
       }),
     ],
@@ -122,15 +122,29 @@ registerRoute(
     cacheName: 'static-data-assets',
     plugins: [
       new ExpirationPlugin({
-        maxEntries: 30,
-        maxAgeSeconds: 60 * 60 * 24 * 2,
+        maxEntries: 32,
+        maxAgeSeconds: 86400,
         purgeOnQuotaError: !0,
       }),
     ],
   }),
   'GET'
 )
-
+registerRoute(
+  /\/api\/.*$/i,
+  new NetworkFirst({
+    cacheName: 'apis',
+    networkTimeoutSeconds: 10,
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 16,
+        maxAgeSeconds: 86400,
+        purgeOnQuotaError: !0,
+      }),
+    ],
+  }),
+  'GET'
+)
 registerRoute(
   /.*/i,
   new NetworkFirst({
@@ -147,23 +161,40 @@ registerRoute(
   'GET'
 )
 
+// following lines gives you control of the offline fallback strategies
+// https://developers.google.com/web/tools/workbox/guides/advanced-recipes#comprehensive_fallbacks
+
 // Use a stale-while-revalidate strategy for all other requests.
 setDefaultHandler(new StaleWhileRevalidate())
 
 // This "catch" handler is triggered when any of the other routes fail to
 // generate a response.
 setCatchHandler(({ event }) => {
+  // The FALLBACK_URL entries must be added to the cache ahead of time, either
+  // via runtime or precaching. If they are precached, then call
+  // `matchPrecache(FALLBACK_URL)` (from the `workbox-precaching` package)
+  // to get the response from the correct cache.
+  //
+  // Use event, request, and url to figure out how to respond.
+  // One approach would be to use request.destination, see
+  // https://medium.com/dev-channel/service-worker-caching-strategies-based-on-request-types-57411dd7652c
+
+  if (
+    event.request.cache === 'only-if-cached' &&
+    event.request.mode !== 'same-origin'
+  )
+    return
   switch (event.request.destination) {
     case 'document':
-      // If using precached URLs:
-      return matchPrecache('/fallback')
-      // return caches.match('/fallback')
-      break
+    // If using precached URLs:
+    // return matchPrecache('/fallback')
+    // return caches.match('/fallback')
+    // break
     case 'image':
-      // If using precached URLs:
-      // return matchPrecache('/fallback.png')
-      return caches.match('/fallback.webp')
-      break
+    // If using precached URLs:
+    // return matchPrecache('/static/images/fallback.png')
+    // return caches.match('/static/images/fallback.png')
+    // break
     case 'font':
     // If using precached URLs:
     // return matchPrecache(FALLBACK_FONT_URL);
