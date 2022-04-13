@@ -43,7 +43,8 @@ const Home = () => {
     try {
       let isBirthday = false
       const data = await getTrackdetails(user?.uid)
-      if (data.length) {
+      console.log('Handle data', data)
+      if (data?.length) {
         const newData = data.map((item) => {
           isBirthday = false
           let targetDate = new Date(currentYear, item.month, item.day)
@@ -103,6 +104,7 @@ const Home = () => {
 
   return (
     <div className='wrapper'>
+      {console.log(orgData)}
       {isLoading ? (
         <SkeletonHome />
       ) : orgData.empty ? (

@@ -33,8 +33,6 @@ export const getTrackdetails = async (uid, privacy) => {
   const snapshot = await getDocs(q)
   if (!snapshot.empty) {
     return snapshot.docs.map((item) => item.data())
-  } else {
-    return []
   }
 }
 

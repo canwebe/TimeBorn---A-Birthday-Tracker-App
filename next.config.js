@@ -8,9 +8,8 @@ module.exports = withPWA({
   },
   pwa: {
     dest: 'public',
-    runtimeCaching,
-    skipWaiting: true,
-    publicExcludes: ['!*.mp3'],
+    swSrc: 'service-worker.js',
+    // publicExcludes: ['!*.mp3'],
     buildExcludes: [
       /chunks\/images\/.*$/, // Don't precache files under .next/static/chunks/images this improves next-optimized-images behaviour
       /chunks\/pages\/api\/.*/, // Dont cache the API it needs fresh serverinfo
