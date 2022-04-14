@@ -43,7 +43,8 @@ const Home = () => {
     try {
       let isBirthday = false
       const data = await getTrackdetails(user?.uid)
-      if (data.length) {
+      console.log('Handle data', data)
+      if (data?.length) {
         const newData = data.map((item) => {
           isBirthday = false
           let targetDate = new Date(currentYear, item.month, item.day)
@@ -103,6 +104,7 @@ const Home = () => {
 
   return (
     <div className='wrapper'>
+      {console.log(orgData)}
       {isLoading ? (
         <SkeletonHome />
       ) : orgData.empty ? (
@@ -111,7 +113,6 @@ const Home = () => {
         </p>
       ) : (
         <div className={styles.flexWrapper}>
-          {console.log('org', orgData)}
           {orgData?.below2.length > 0 && (
             <div className={styles.priority}>
               <h1 className={styles.header}>In Two Days</h1>
@@ -149,6 +150,18 @@ const Home = () => {
           />
         </Modal>
       )}
+      {/* {isPwamodal && (
+        <div className='pwaModal'>
+          <span onClick={() => setIsPwaModal(false)}>
+            <MdCancel />
+          </span>
+          <p>For faster experience Install this app</p>
+
+          <button className='installPwa' onClick={onClickInstall}>
+            Install
+          </button>
+        </div>
+      )} */}
     </div>
   )
 }

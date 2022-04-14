@@ -33,8 +33,6 @@ export const getTrackdetails = async (uid, privacy) => {
   const snapshot = await getDocs(q)
   if (!snapshot.empty) {
     return snapshot.docs.map((item) => item.data())
-  } else {
-    return []
   }
 }
 
@@ -102,7 +100,7 @@ export const fetchWishes = async (tag) => {
 
 export const userDataEdit = async (uid, payload) => {
   const ref = doc(db, 'users', uid)
-  console.log(ref)
+
   await setDoc(ref, payload, { merge: true })
 }
 

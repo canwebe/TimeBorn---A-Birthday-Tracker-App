@@ -17,10 +17,9 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       if (authUser) {
-        if (!user) {
-          localStorage.setItem('authUser', JSON.stringify(authUser))
-          setUser(authUser)
-        }
+        localStorage.setItem('authUser', JSON.stringify(authUser))
+        setUser(authUser)
+
         console.log('Sign in')
       } else {
         console.log('Log out')

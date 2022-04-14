@@ -4,7 +4,7 @@
   align-items: center;
   min-height: 100vh;
   position: relative;
-  border: 10px solid rgb(125 187 133);
+  border: 10px solid #7dbb85;
 }
 
 .loginBox {
@@ -61,7 +61,7 @@
 }
 
 .button:active {
-  transform: scale(0.99);
+  transform: scale(0.978);
   box-shadow: 17px 17px 20px #7ab181, -17px -17px 20px #a6efaf;
 }
 

@@ -213,7 +213,7 @@ export default function Profile() {
                   onChange={handleSearch}
                   value={searchString}
                 />
-                {console.log(searchString)}
+
                 <div className={styles.friendListWrapper}>
                   {searchString
                     ? filterList.map((item, i) => (

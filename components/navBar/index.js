@@ -19,12 +19,12 @@ export default function NavBar() {
     setIsLoading(true)
     await handleSignOut()
     setIsLoading(false)
+    router.push('/login')
     // setIsOpen(false)
   }
   return (
     <>
       <nav className={styles.navWrapper}>
-        {console.log(user)}
         <div className={cls('wrapper', styles.nav)}>
           <MdOutlineMenu
             className={styles.menu}
