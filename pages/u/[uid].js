@@ -13,11 +13,11 @@ import { useRouter } from 'next/router'
 import BackBtn from '../../components/backBtn'
 import SkeletonProfile from '../../components/skeleton/skeletoonProfile'
 
-export default function UserProfile({ userData, friendLists, userUid }) {
-  // const [userData, setUserData] = useState(null)
-  // const [friendLists, setFriendLists] = useState([])
+export default function UserProfile() {
+  const [userData, setUserData] = useState(null)
+  const [friendLists, setFriendLists] = useState([])
   const router = useRouter()
-  // const userUid = router.query.uid
+  const userUid = router.query.uid
 
   const { user } = useAuth()
   const [date, setDate] = useState('')
@@ -61,9 +61,9 @@ export default function UserProfile({ userData, friendLists, userUid }) {
     }
   }, [userUid])
 
-  // useEffect(() => {
-  //   fetchData()
-  // }, [userUid])
+  useEffect(() => {
+    fetchData()
+  }, [userUid])
 
   return (
     <div className='wrapper'>
@@ -124,21 +124,21 @@ export default function UserProfile({ userData, friendLists, userUid }) {
   )
 }
 
-export async function getServerSideProps({ query: { uid } }) {
-  let userData = null
-  let friendLists = []
-  try {
-    userData = await fetchUserData(uid)
-    friendLists = await getTrackdetails(uid, true)
-  } catch (error) {
-    console.log(error)
-  }
+// export async function getServerSideProps({ query: { uid } }) {
+//   let userData = null
+//   let friendLists = []
+//   try {
+//     userData = await fetchUserData(uid)
+//     friendLists = await getTrackdetails(uid, true)
+//   } catch (error) {
+//     console.log(error)
+//   }
 
-  return {
-    props: {
-      userData,
-      friendLists,
-      userUid: uid,
-    },
-  }
-}
+//   return {
+//     props: {
+//       userData,
+//       friendLists,
+//       userUid: uid,
+//     },
+//   }
+// }

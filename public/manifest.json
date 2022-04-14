@@ -32,7 +32,7 @@
   "start_url": "/",
   "display": "standalone",
   "background_color": "#90d098",
-  "theme_color": "#7dbb85",
+  "theme_color": "#90d098",
   "orientation": "portrait",
   "categories": ["productivity"]
 }

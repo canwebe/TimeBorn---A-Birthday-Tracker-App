@@ -19,6 +19,7 @@ export default function NavBar() {
     setIsLoading(true)
     await handleSignOut()
     setIsLoading(false)
+    router.push('/login')
     // setIsOpen(false)
   }
   return (
