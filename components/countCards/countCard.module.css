@@ -5,7 +5,7 @@
   padding: 18px;
   border-radius: 7px;
   box-shadow: 12px 12px 16px 0 rgb(0 0 0 / 20%),
-    -8px -8px 12px 0 rgb(164 237 173);
+    -8px -8px 12px 0 var(--color-card-shadow);
 }
 
 /* .cardHour,

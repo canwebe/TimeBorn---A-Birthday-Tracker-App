@@ -4,10 +4,16 @@ import { AuthContextProvider } from '../contexts/authContext'
 import AuthWrapper from '../components/authWrapper'
 import NavBar from '../components/navBar'
 import Head from 'next/head'
+import { useEffect } from 'react'
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
   const noAuth = ['/login']
+  useEffect(() => {
+    if (!navigator.onLine) {
+      alert('You are offline')
+    }
+  }, [])
   return (
     <>
       <Head>
