@@ -8,7 +8,7 @@ export default function AddTrackerModal({ setIsModal, uid, handleData }) {
   const [day, setDay] = useState('')
   const [month, setMonth] = useState('1')
   const [privacy, setPrivacy] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState('Add Details')
   const [error, setError] = useState('')
 
   // const { user } = useAuth()
@@ -17,13 +17,16 @@ export default function AddTrackerModal({ setIsModal, uid, handleData }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setIsLoading(true)
+    setIsLoading('Loading')
+    if (!navigator.onLine) {
+      setIsLoading('Added')
+    }
     try {
       await trackBirthday(uid, name, day, month, privacy)
       setName('')
       setDay('')
       setMonth('1')
-      setIsLoading(false)
+      setIsLoading('Add Details')
       // handleData()
       setIsModal(false)
     } catch (error) {
@@ -31,8 +34,8 @@ export default function AddTrackerModal({ setIsModal, uid, handleData }) {
       setName('')
       setDay('')
       setMonth('1')
-      setError('Something went wrong, Try Again!')
-      setIsLoading(false)
+      setError(error?.message || 'Something Went Wrong, Try Again!')
+      setIsLoading('Add Details')
       setIsModal(false)
     }
   }
@@ -111,8 +114,12 @@ export default function AddTrackerModal({ setIsModal, uid, handleData }) {
               <span className={styles.public}>public</span>
             )}
           </span>
-          <button disabled={isLoading} className={styles.btn} type='submit'>
-            {isLoading ? 'Loading' : 'Add Details'}
+          <button
+            disabled={isLoading !== 'Add Details'}
+            className={styles.btn}
+            type='submit'
+          >
+            {isLoading}
           </button>
         </div>
       </form>
