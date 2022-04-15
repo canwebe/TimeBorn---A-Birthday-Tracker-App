@@ -162,3 +162,42 @@
 .audio {
   display: none;
 }
+
+
+.giftWrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 0px;
+}
+
+.giftCard{
+  display: flex;
+  justify-content: space-between;
+
+  background-color: #25975d;
+  
+  border-radius: 7px;
+
+}
+
+.image{
+  width: 35%;
+  border-radius: 9px 0px 0px 9px;
+  overflow: hidden;
+  filter: grayscale(0.5);
+}
+
+
+.giftName{
+  width: 60%;
+    line-height: 25px;
+    padding: 15px 7px 10px 0px;
+}
+
+.recomendation{
+  color: rgb(1, 1, 163);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: underline;
+}

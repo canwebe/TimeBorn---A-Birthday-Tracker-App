@@ -26,7 +26,6 @@ export default function FriendCard({
     setIsLoading(true)
     try {
       await updatePrivacy(uid, slug, view)
-      console.log('done hogeya')
       await fetchFriends()
       setIsLoading(false)
     } catch (error) {

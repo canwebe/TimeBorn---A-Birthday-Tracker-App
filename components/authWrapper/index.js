@@ -31,7 +31,5 @@ export default function AuthWrapper({ children }) {
     }
   }, [])
 
-  // return user ? isLoading ? children : <Loader /> : <Loader />
-
   return isLoading ? <Loader /> : user ? children : null
 }

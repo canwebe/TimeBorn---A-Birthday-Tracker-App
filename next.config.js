@@ -1,10 +1,9 @@
 const withPWA = require('next-pwa')
-const runtimeCaching = require('next-pwa/cache')
 
 module.exports = withPWA({
   reactStrictMode: true,
   images: {
-    domains: ['lh3.googleusercontent.com'],
+    domains: ['lh3.googleusercontent.com', 'm.media-amazon.com'],
   },
   pwa: {
     dest: 'public',

@@ -1,10 +1,9 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useAuth } from '../contexts/authContext'
-import { getAllUsers, getSearchResults } from '../helpers/firebase'
+import { getAllUsers } from '../helpers/firebase'
 import Image from 'next/image'
 import styles from '../styles/Search.module.css'
-import Bg from '../public/search.svg'
 
 export default function Search() {
   const [data, setData] = useState([])
@@ -72,7 +71,7 @@ export default function Search() {
         ) : (
           <div className={styles.searchSvg}>
             <Image
-              src={Bg}
+              src='/search.svg'
               width='300px'
               height='300px'
               layout='responsive'

@@ -15,7 +15,6 @@ export default function NavBar() {
   const router = useRouter()
 
   const handleClick = async () => {
-    console.log('click')
     setIsLoading(true)
     await handleSignOut()
     setIsLoading(false)

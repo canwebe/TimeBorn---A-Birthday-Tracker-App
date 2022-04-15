@@ -1,8 +1,3 @@
-import { signOut } from 'firebase/auth'
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { MdOutlineAdd } from 'react-icons/md'
 import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
@@ -12,7 +7,6 @@ import CountCardDay from '../components/countCards/countCardDay'
 import CountCardMonth from '../components/countCards/countCardMonth'
 import CountCardHour from '../components/countCards/countCardHour'
 import { useAuth } from '../contexts/authContext'
-import { getTrackdetails } from '../helpers/firebase'
 import AddTrackerModal from '../components/addTrackerModal'
 import SkeletonHome from '../components/skeleton/skeletonHome'
 import useTrackers from '../hooks/useTrackers'
@@ -26,13 +20,9 @@ const Home = () => {
   })
 
   const [isModal, setIsModal] = useState(false)
-  const router = useRouter()
-
-  // const [data, setData] = useState([])
 
   const { user } = useAuth()
   const { data, loading } = useTrackers(user?.uid)
-  console.log(data, loading)
   //Times
   const sec = 1000
   const min = sec * 60
@@ -107,7 +97,6 @@ const Home = () => {
 
   return (
     <div className='wrapper'>
-      {console.log(orgData)}
       {isLoading ? (
         <SkeletonHome />
       ) : orgData.empty ? (
@@ -121,11 +110,9 @@ const Home = () => {
               <h1 className={styles.header}>In Two Days</h1>
               <div className={styles.priorityParts}>
                 {orgData?.below2?.map((item, i) =>
-                  // <CountCardMain person={item} key={i} />
                   renderCards(item.difference, item)
                 )}
               </div>
-              {console.log('home')}
             </div>
           )}
 
@@ -133,7 +120,6 @@ const Home = () => {
             <h1 className={styles.header}>Upcommings</h1>
             <div className={styles.priorityParts}>
               {orgData?.main?.map((item, i) =>
-                // <CountCardMain person={item} key={i} />
                 renderCards(item.difference, item)
               )}
             </div>
@@ -149,18 +135,6 @@ const Home = () => {
           <AddTrackerModal setIsModal={setIsModal} uid={user?.uid} />
         </Modal>
       )}
-      {/* {isPwamodal && (
-        <div className='pwaModal'>
-          <span onClick={() => setIsPwaModal(false)}>
-            <MdCancel />
-          </span>
-          <p>For faster experience Install this app</p>
-
-          <button className='installPwa' onClick={onClickInstall}>
-            Install
-          </button>
-        </div>
-      )} */}
     </div>
   )
 }
