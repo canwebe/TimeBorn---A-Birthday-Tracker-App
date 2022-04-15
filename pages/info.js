@@ -16,6 +16,8 @@ import { useEffect, useRef, useState } from 'react'
 import Modal from '../components/modal'
 import AddNotes from '../components/addNotes'
 import BackBtn from '../components/backBtn'
+import { gifts } from '../data/data'
+import Image from 'next/image'
 
 export default function Info({ result }) {
   const router = useRouter()
@@ -211,6 +213,19 @@ export default function Info({ result }) {
           </div>
         </div>
         <h1>Suggested Gift Items</h1>
+        <div className={styles.giftWrapper}>
+          {
+            gifts.map((item,i)=>
+            <a href={item.link} target='_blank' key={i} className={styles.giftCard}>
+              <div className={styles.image}>
+                <Image className={styles.img} src={item.photo} width='100px' height='100px' layout='responsive'/>
+              </div>
+              <p className={styles.giftName}>{item.name}</p>
+            </a>
+            )
+          }
+        </div>
+        <a href="https://www.amazon.com/Best-Gifts/s?k=Best+Gifts" className={styles.recomendation} target='_blank'>For more Gift Recomendation</a>
       </div>
       <BackBtn />
       {isModal && (
@@ -240,3 +255,6 @@ export async function getStaticProps() {
     props: { result },
   }
 }
+
+
+
