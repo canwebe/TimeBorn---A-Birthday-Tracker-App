@@ -24,7 +24,7 @@ export default function AddTrackerModal({ setIsModal, uid, handleData }) {
       setDay('')
       setMonth('1')
       setIsLoading(false)
-      handleData()
+      // handleData()
       setIsModal(false)
     } catch (error) {
       console.log(error)
@@ -33,6 +33,7 @@ export default function AddTrackerModal({ setIsModal, uid, handleData }) {
       setMonth('1')
       setError('Something went wrong, Try Again!')
       setIsLoading(false)
+      setIsModal(false)
     }
   }
 
@@ -110,7 +111,6 @@ export default function AddTrackerModal({ setIsModal, uid, handleData }) {
               <span className={styles.public}>public</span>
             )}
           </span>
-          {console.log(privacy)}
           <button disabled={isLoading} className={styles.btn} type='submit'>
             {isLoading ? 'Loading' : 'Add Details'}
           </button>

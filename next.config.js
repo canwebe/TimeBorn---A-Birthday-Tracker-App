@@ -9,6 +9,7 @@ module.exports = withPWA({
   pwa: {
     dest: 'public',
     swSrc: 'service-worker.js',
+    disable: process.env.NODE_ENV === 'development',
     // publicExcludes: ['!*.mp3'],
     buildExcludes: [
       /chunks\/images\/.*$/, // Don't precache files under .next/static/chunks/images this improves next-optimized-images behaviour
