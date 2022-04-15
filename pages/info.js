@@ -216,7 +216,7 @@ export default function Info({ result }) {
         <div className={styles.giftWrapper}>
           {
             gifts.map((item,i)=>
-            <a href={item.link} target='_blank' key={i} className={styles.giftCard}>
+            <a href={item.link} target='_blank' rel='noreferrer' key={i} className={styles.giftCard}>
               <div className={styles.image}>
                 <Image className={styles.img} src={item.photo} width='100px' height='100px' layout='responsive'/>
               </div>
@@ -225,7 +225,7 @@ export default function Info({ result }) {
             )
           }
         </div>
-        <a href="https://www.amazon.com/Best-Gifts/s?k=Best+Gifts" className={styles.recomendation} target='_blank'>For more Gift Recomendation</a>
+        <a href="https://www.amazon.com/Best-Gifts/s?k=Best+Gifts" className={styles.recomendation} target='_blank' rel='noreferrer'>For more Gift Recomendation</a>
       </div>
       <BackBtn />
       {isModal && (
