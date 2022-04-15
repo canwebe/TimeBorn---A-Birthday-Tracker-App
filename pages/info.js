@@ -2,7 +2,6 @@ import { useRouter } from 'next/router'
 import styles from '../styles/Info.module.css'
 import {
   MdDelete,
-  MdChevronLeft,
   MdEditNote,
   MdHourglassFull,
   MdCelebration,
@@ -66,7 +65,6 @@ export default function Info({ result }) {
   }
 
   const handleShuffle = async () => {
-    // const no = Math.floor(Math.random() * wishList.length)
     setIsBtnLoading(true)
     const no = random()
     setWish(wishList[no].wishe)
@@ -214,18 +212,36 @@ export default function Info({ result }) {
         </div>
         <h1>Suggested Gift Items</h1>
         <div className={styles.giftWrapper}>
-          {
-            gifts.map((item,i)=>
-            <a href={item.link} target='_blank' rel='noreferrer' key={i} className={styles.giftCard}>
+          {gifts.map((item, i) => (
+            <a
+              href={item.link}
+              target='_blank'
+              rel='noreferrer'
+              key={i}
+              className={styles.giftCard}
+            >
               <div className={styles.image}>
-                <Image className={styles.img} src={item.photo} width='100px' height='100px' layout='responsive'/>
+                <Image
+                  className={styles.img}
+                  src={item.photo}
+                  width='100px'
+                  height='100px'
+                  layout='responsive'
+                  alt='Gift Name'
+                />
               </div>
               <p className={styles.giftName}>{item.name}</p>
             </a>
-            )
-          }
+          ))}
         </div>
-        <a href="https://www.amazon.com/Best-Gifts/s?k=Best+Gifts" className={styles.recomendation} target='_blank' rel='noreferrer'>For more Gift Recomendation</a>
+        <a
+          href='https://www.amazon.com/Best-Gifts/s?k=Best+Gifts'
+          className={styles.recomendation}
+          target='_blank'
+          rel='noreferrer'
+        >
+          For more Gift Recomendation
+        </a>
       </div>
       <BackBtn />
       {isModal && (
@@ -255,6 +271,3 @@ export async function getStaticProps() {
     props: { result },
   }
 }
-
-
-

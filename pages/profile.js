@@ -249,19 +249,3 @@ export default function Profile() {
     </div>
   )
 }
-
-// export async function getServerSideProps(context) {
-//   const uid = context.query.uid
-//   let results = []
-//   try {
-//     const res = await getTrackdetailsOrder(uid, 'privacy')
-//     if (res.length) {
-//       results = res
-//     }
-//   } catch (error) {
-//     console.log(error)
-//   }
-//   return {
-//     props: { results },
-//   }
-// }

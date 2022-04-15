@@ -123,22 +123,3 @@ export default function UserProfile() {
     </div>
   )
 }
-
-// export async function getServerSideProps({ query: { uid } }) {
-//   let userData = null
-//   let friendLists = []
-//   try {
-//     userData = await fetchUserData(uid)
-//     friendLists = await getTrackdetails(uid, true)
-//   } catch (error) {
-//     console.log(error)
-//   }
-
-//   return {
-//     props: {
-//       userData,
-//       friendLists,
-//       userUid: uid,
-//     },
-//   }
-// }
