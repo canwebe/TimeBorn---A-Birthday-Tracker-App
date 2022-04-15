@@ -15,6 +15,7 @@ import { useAuth } from '../contexts/authContext'
 import { getTrackdetails } from '../helpers/firebase'
 import AddTrackerModal from '../components/addTrackerModal'
 import SkeletonHome from '../components/skeleton/skeletonHome'
+import useTrackers from '../hooks/useTrackers'
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -23,12 +24,15 @@ const Home = () => {
     main: [],
     empty: true,
   })
+
   const [isModal, setIsModal] = useState(false)
   const router = useRouter()
 
   // const [data, setData] = useState([])
 
   const { user } = useAuth()
+  const { data, loading } = useTrackers(user?.uid)
+  console.log(data, loading)
   //Times
   const sec = 1000
   const min = sec * 60
@@ -41,42 +45,41 @@ const Home = () => {
 
   const handleData = async () => {
     try {
-      let isBirthday = false
-      const data = await getTrackdetails(user?.uid)
-      console.log('Handle data', data)
-      if (data?.length) {
-        const newData = data.map((item) => {
-          isBirthday = false
-          let targetDate = new Date(currentYear, item.month, item.day)
-          let difference = targetDate - currentTime
-          if (difference < -day) {
-            targetDate = new Date(
-              parseInt(currentYear) + 1,
-              item.month,
-              item.day
-            )
-            difference = targetDate - currentTime
-          } else if (difference <= 0) {
-            isBirthday = true
-          }
-          return {
-            ...item,
-            difference,
-            isBirthday,
-            targetDate,
-          }
-        })
+      if (!loading) {
+        let isBirthday = false
+        if (data?.length) {
+          const newData = data.map((item) => {
+            isBirthday = false
+            let targetDate = new Date(currentYear, item.month, item.day)
+            let difference = targetDate - currentTime
+            if (difference < -day) {
+              targetDate = new Date(
+                parseInt(currentYear) + 1,
+                item.month,
+                item.day
+              )
+              difference = targetDate - currentTime
+            } else if (difference <= 0) {
+              isBirthday = true
+            }
+            return {
+              ...item,
+              difference,
+              isBirthday,
+              targetDate,
+            }
+          })
+          const sorted = newData.sort((a, b) => a.difference - b.difference)
+          setOrgData({
+            below2: sorted.filter((item) => item.difference < 2 * day),
+            main: sorted.filter((item) => item.difference >= 2 * day),
+            empty: false,
+          })
+        }
 
-        const sorted = newData.sort((a, b) => a.difference - b.difference)
-        setOrgData({
-          below2: sorted.filter((item) => item.difference < 2 * day),
-          main: sorted.filter((item) => item.difference >= 2 * day),
-          empty: false,
-        })
+        setIsLoading(false)
+        console.log('Done')
       }
-
-      setIsLoading(false)
-      console.log('Done')
     } catch (error) {
       console.log('Something went wrong in fetch', error)
       setIsLoading(false)
@@ -100,7 +103,7 @@ const Home = () => {
   // Side Effect
   useEffect(() => {
     handleData()
-  }, [])
+  }, [data])
 
   return (
     <div className='wrapper'>
@@ -143,11 +146,7 @@ const Home = () => {
       </div>
       {isModal && (
         <Modal setIsModal={setIsModal}>
-          <AddTrackerModal
-            setIsModal={setIsModal}
-            uid={user?.uid}
-            handleData={handleData}
-          />
+          <AddTrackerModal setIsModal={setIsModal} uid={user?.uid} />
         </Modal>
       )}
       {/* {isPwamodal && (
