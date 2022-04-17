@@ -18,6 +18,7 @@
   background-color: #c9f3d4;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.12);
   color: #343434;
+  max-width: 480px;
 }
 
 .input:focus {
@@ -30,8 +31,7 @@
 }
 
 .searchListWrapper {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 20px;
   background-color: #c5d8e4;
   padding: 30px 20px;
@@ -66,4 +66,13 @@
   width: 300px;
   margin: 140px auto 30px;
   filter: opacity(0.3);
+}
+
+@media screen and (min-width: 1050px) {
+  .searchListWrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    width: 80%;
+    margin: 35px auto 0;
+  }
 }

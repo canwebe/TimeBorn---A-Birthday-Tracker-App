@@ -10,6 +10,8 @@ import { useAuth } from '../contexts/authContext'
 import AddTrackerModal from '../components/addTrackerModal'
 import SkeletonHome from '../components/skeleton/skeletonHome'
 import useTrackers from '../hooks/useTrackers'
+import Link from 'next/link'
+import { AnimatePresence } from 'framer-motion'
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -20,7 +22,7 @@ const Home = () => {
   })
 
   const [isModal, setIsModal] = useState(false)
-
+  const [overflow, setOverflow] = useState(false)
   const { user } = useAuth()
   const { data, loading } = useTrackers(user?.uid)
   //Times
@@ -60,6 +62,10 @@ const Home = () => {
             }
           })
           const sorted = newData.sort((a, b) => a.difference - b.difference)
+          if (sorted.length > 8) {
+            setOverflow(true)
+            sorted = sorted.slice(0, 8)
+          }
           setOrgData({
             below2: sorted.filter((item) => item.difference < 2 * day),
             main: sorted.filter((item) => item.difference >= 2 * day),
@@ -124,17 +130,24 @@ const Home = () => {
               )}
             </div>
           </div>
+          {overflow && (
+            <Link href='/profile'>
+              <a className={styles.seeAll}>See all lists</a>
+            </Link>
+          )}
         </div>
       )}
 
       <div onClick={() => setIsModal(true)} className={styles.addBtn}>
         <MdOutlineAdd />
       </div>
-      {isModal && (
-        <Modal setIsModal={setIsModal}>
-          <AddTrackerModal setIsModal={setIsModal} uid={user?.uid} />
-        </Modal>
-      )}
+      <AnimatePresence>
+        {isModal && (
+          <Modal setIsModal={setIsModal}>
+            <AddTrackerModal setIsModal={setIsModal} uid={user?.uid} />
+          </Modal>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

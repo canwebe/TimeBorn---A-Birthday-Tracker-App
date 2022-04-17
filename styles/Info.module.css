@@ -102,7 +102,6 @@
 
 .wishes {
   padding: 30px;
-  /* background-color: white; */
   margin: 15px auto 20px;
   border-radius: 7px;
   background: rgb(9, 172, 205);
@@ -135,7 +134,6 @@
 .wishBtnWrapper {
   display: flex;
   gap: 10px;
-  /* align-items: stretch; */
 }
 
 .wishBtn,
@@ -163,41 +161,47 @@
   display: none;
 }
 
-
-.giftWrapper{
-  display: flex;
-  flex-direction: column;
+.giftWrapper {
+  display: grid;
   gap: 20px;
   padding: 20px 0px;
 }
 
-.giftCard{
+.giftCard {
   display: flex;
   justify-content: space-between;
-
   background-color: #25975d;
-  
-  border-radius: 7px;
-
+  border-radius: 9px;
 }
 
-.image{
+.image {
   width: 35%;
   border-radius: 9px 0px 0px 9px;
   overflow: hidden;
   filter: grayscale(0.5);
 }
 
-
-.giftName{
+.giftName {
   width: 60%;
-    line-height: 25px;
-    padding: 15px 7px 10px 0px;
+  line-height: 25px;
+  padding: 15px 7px 10px 0px;
 }
 
-.recomendation{
+.recomendation {
   color: rgb(1, 1, 163);
   font-size: 1.2rem;
   font-weight: 600;
   text-decoration: underline;
+}
+
+@media screen and (min-width: 780px) {
+  .infoPage {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .giftWrapper {
+    gap: 27px;
+    margin-top: 20px;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

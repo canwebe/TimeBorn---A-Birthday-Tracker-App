@@ -52,8 +52,7 @@
 
 .friendListWrapper {
   background-color: #65a36d;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 20px;
   margin: 35px auto;
   padding: 30px 20px;
@@ -64,4 +63,11 @@
   font-size: 1rem;
   text-align: center;
   margin-top: 10px;
+}
+
+@media screen and (min-width: 1050px) {
+  .friendListWrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
 }
