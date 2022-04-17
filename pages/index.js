@@ -11,6 +11,7 @@ import AddTrackerModal from '../components/addTrackerModal'
 import SkeletonHome from '../components/skeleton/skeletonHome'
 import useTrackers from '../hooks/useTrackers'
 import Link from 'next/link'
+import { AnimatePresence } from 'framer-motion'
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -140,11 +141,13 @@ const Home = () => {
       <div onClick={() => setIsModal(true)} className={styles.addBtn}>
         <MdOutlineAdd />
       </div>
-      {isModal && (
-        <Modal setIsModal={setIsModal}>
-          <AddTrackerModal setIsModal={setIsModal} uid={user?.uid} />
-        </Modal>
-      )}
+      <AnimatePresence>
+        {isModal && (
+          <Modal setIsModal={setIsModal}>
+            <AddTrackerModal setIsModal={setIsModal} uid={user?.uid} />
+          </Modal>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

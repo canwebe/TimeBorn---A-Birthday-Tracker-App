@@ -17,6 +17,7 @@ import AddNotes from '../components/addNotes'
 import BackBtn from '../components/backBtn'
 import { gifts } from '../data/data'
 import Image from 'next/image'
+import { AnimatePresence } from 'framer-motion'
 
 export default function Info({ result }) {
   const router = useRouter()
@@ -244,17 +245,19 @@ export default function Info({ result }) {
         </a>
       </div>
       <BackBtn />
-      {isModal && (
-        <Modal setIsModal={setIsModal}>
-          <AddNotes
-            slug={slug}
-            uid={user?.uid}
-            setIsModal={setIsModal}
-            mainNote={mainNote}
-            fetchNoteData={fetchNoteData}
-          />
-        </Modal>
-      )}
+      <AnimatePresence>
+        {isModal && (
+          <Modal setIsModal={setIsModal}>
+            <AddNotes
+              slug={slug}
+              uid={user?.uid}
+              setIsModal={setIsModal}
+              mainNote={mainNote}
+              fetchNoteData={fetchNoteData}
+            />
+          </Modal>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

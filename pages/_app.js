@@ -5,6 +5,19 @@ import AuthWrapper from '../components/authWrapper'
 import NavBar from '../components/navBar'
 import Head from 'next/head'
 import { useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+
+const mainVariant = {
+  hidden: {
+    opacity: 0,
+    y: 150,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: 'spring', bounce: 0.27 },
+  },
+}
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
@@ -29,11 +42,17 @@ function MyApp({ Component, pageProps }) {
         ) : (
           <>
             <NavBar />
-            <main>
+            <motion.main
+              key={router.route}
+              variants={mainVariant}
+              initial='hidden'
+              animate='visible'
+              exit='exit'
+            >
               <AuthWrapper>
                 <Component {...pageProps} />
               </AuthWrapper>
-            </main>
+            </motion.main>
           </>
         )}
       </AuthContextProvider>
