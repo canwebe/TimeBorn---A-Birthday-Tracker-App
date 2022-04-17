@@ -5,17 +5,15 @@ import AuthWrapper from '../components/authWrapper'
 import NavBar from '../components/navBar'
 import Head from 'next/head'
 import { useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const mainVariant = {
   hidden: {
     opacity: 0,
-    y: 150,
   },
   visible: {
     opacity: 1,
-    y: 0,
-    transition: { type: 'spring', bounce: 0.27 },
+    transition: { ease: 'easeInOut' },
   },
 }
 
@@ -35,6 +33,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>TimeBorn - A Birthday Tracker App</title>
+        <meta name='viewport' content='width=device-width,initial-scale=1' />
       </Head>
       <AuthContextProvider>
         {noAuth.includes(router.pathname) ? (
@@ -47,7 +46,6 @@ function MyApp({ Component, pageProps }) {
               variants={mainVariant}
               initial='hidden'
               animate='visible'
-              exit='exit'
             >
               <AuthWrapper>
                 <Component {...pageProps} />

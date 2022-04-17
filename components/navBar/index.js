@@ -12,13 +12,14 @@ import { AnimatePresence, motion } from 'framer-motion'
 //Variants
 const sidebarVariants = {
   hidden: {
-    x: -100,
+    x: '-50vw',
   },
   visible: {
     x: 0,
     transition: {
       type: 'spring',
-      bounce: 0.25,
+      damping: 25,
+      stiffness: 190,
     },
   },
   exit: {

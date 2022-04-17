@@ -26,7 +26,7 @@ const modalVariants = {
     opacity: 0,
     transition: {
       ease: 'easeInOut',
-      duration: 0.3,
+      duration: 0.2,
     },
   },
 }
