@@ -77,4 +77,19 @@
   right: 0;
   top: 0;
   height: auto;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 880px) {
+  .bgimg {
+    width: 300px;
+    margin-bottom: 0px;
+  }
+  .loginDiv::after {
+    height: 133px;
+    width: 460px;
+    margin: 0 auto;
+    border-radius: 650px 650px 0 0;
+  }
 }

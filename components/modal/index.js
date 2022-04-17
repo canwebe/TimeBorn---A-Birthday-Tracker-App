@@ -8,9 +8,7 @@ const backdropVariants = {
   visible: { opacity: 1 },
   exit: {
     opacity: 0,
-    transition: {
-      when: 'afterChildren',
-    },
+    transition: { delay: 0.4 },
   },
 }
 
@@ -22,8 +20,9 @@ const modalVariants = {
     transition: { type: 'spring', stiffness: 120, damping: 13, delay: 0.2 },
   },
   exit: {
-    scale: 0,
+    y: '-70vh',
     opacity: 0,
+    transition: { type: 'spring', stiffness: 120, damping: 13 },
     // transition: {
     //   ease: 'easeInOut',
     //   duration: 0.2,
