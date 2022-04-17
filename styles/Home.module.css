@@ -51,8 +51,24 @@
 }
 
 .priorityParts {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 24px;
   margin-bottom: 37px;
+}
+
+.seeAll {
+  text-align: center;
+  width: 100%;
+  display: block;
+  font-weight: 700;
+  text-decoration: overline;
+  font-size: 1.2rem;
+}
+
+@media screen and (min-width: 780px) {
+  .priorityParts {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-top: 38px;
+  }
 }

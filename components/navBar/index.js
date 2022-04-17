@@ -19,7 +19,7 @@ export default function NavBar() {
     await handleSignOut()
     setIsLoading(false)
     router.push('/login')
-    // setIsOpen(false)
+    setIsOpen(false)
   }
   return (
     <>
@@ -39,6 +39,7 @@ export default function NavBar() {
                   layout='responsive'
                   className={styles.img}
                   src={user?.photoURL}
+                  priority
                 />
               )}
             </a>

@@ -12,6 +12,7 @@
   font-weight: 600;
   box-shadow: 2px 3px 18px rgba(0, 0, 0, 0.3);
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .backBtn:active {

@@ -2,7 +2,7 @@
 .modal {
   min-height: 300px;
   width: 90%;
-  /* background-color: var(--color-green); */
+  max-width: 500px;
   background-color: aliceblue;
   z-index: 999;
   border-radius: 7px;

@@ -94,8 +94,7 @@
 
 .friendListWrapper {
   background-color: #65a36d;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 20px;
   margin-bottom: 27px;
   padding: 30px 20px;
@@ -116,6 +115,7 @@
   margin: 27px auto 24px;
   width: 80%;
   padding: 10px 20px;
+  max-width: 475px;
   border-radius: 10px;
   border: 1px solid darkgreen;
   background-color: transparent;
@@ -136,4 +136,11 @@
 
 .searchbox:focus::placeholder {
   opacity: 0.4;
+}
+
+@media screen and (min-width: 880px) {
+  .friendListWrapper {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
 }
