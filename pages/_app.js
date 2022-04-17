@@ -11,9 +11,9 @@ function MyApp({ Component, pageProps }) {
   const noAuth = ['/login']
   useEffect(() => {
     if (!navigator.onLine) {
-      document.documentElement.style.setProperty(' --color-body', '#98ae9b')
+      document.documentElement.style.setProperty('--color-body', '#98ae9b')
       document.documentElement.style.setProperty(
-        ' --color-card-shadow',
+        '--color-card-shadow',
         '#bbd9bf'
       )
     }
