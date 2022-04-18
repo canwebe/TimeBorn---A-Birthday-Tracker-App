@@ -1,4 +1,3 @@
-import { async } from '@firebase/util'
 import { updateProfile } from 'firebase/auth'
 import {
   addDoc,
@@ -82,19 +81,11 @@ export const fetchNote = async (uid, slug) => {
   }
 }
 
-export const fetchWishes = async (tag) => {
-  let res
-  if (tag) {
-    const q = query(collection(db, 'birthdayWishes'), where('tag', '==', tag))
-    res = await getDocs(q)
-  } else {
-    res = await getDocs(collection(db, 'birthdayWishes'))
-  }
+export const fetchWishes = async () => {
+  const res = await getDocs(collection(db, 'birthdayWishes'))
 
   if (!res.empty) {
     return res.docs.map((item) => item.data())
-  } else {
-    return []
   }
 }
 
