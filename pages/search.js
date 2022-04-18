@@ -4,6 +4,17 @@ import { useAuth } from '../contexts/authContext'
 import { getAllUsers } from '../helpers/firebase'
 import Image from 'next/image'
 import styles from '../styles/Search.module.css'
+import { motion } from 'framer-motion'
+
+const mainVariant = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: { ease: 'easeInOut' },
+  },
+}
 
 export default function Search() {
   const [data, setData] = useState([])
@@ -36,7 +47,12 @@ export default function Search() {
   }, [searchString])
 
   return (
-    <div className='wrapper'>
+    <motion.div
+      className='wrapper'
+      variants={mainVariant}
+      initial='hidden'
+      animate='visible'
+    >
       <div className={styles.search}>
         <input
           type='text'
@@ -80,6 +96,6 @@ export default function Search() {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   )
 }

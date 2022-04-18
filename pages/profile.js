@@ -12,7 +12,17 @@ import { useEffect, useState } from 'react'
 import { months } from '../data/data'
 import FriendCard from '../components/friendCard'
 import SkeletonProfile from '../components/skeleton/skeletoonProfile'
+import { motion } from 'framer-motion'
 
+const mainVariant = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: { ease: 'easeInOut' },
+  },
+}
 export default function Profile() {
   const { user } = useAuth()
   const [day, setDay] = useState('')
@@ -102,7 +112,12 @@ export default function Profile() {
   }, [])
 
   return (
-    <div className='wrapper'>
+    <motion.div
+      className='wrapper'
+      variants={mainVariant}
+      animate='visible'
+      initial='hidden'
+    >
       <div className={styles.profile}>
         <h1 className={styles.heading}>My Profile</h1>
 
@@ -246,6 +261,6 @@ export default function Profile() {
           </>
         )}
       </div>
-    </div>
+    </motion.div>
   )
 }
