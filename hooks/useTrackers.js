@@ -24,7 +24,7 @@ const useTrackers = (uid) => {
     })
 
     return () => unsub()
-  }, [uid])
+  }, [])
 
   return { data, loading }
 }

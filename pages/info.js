@@ -68,17 +68,17 @@ export default function Info({ result }) {
   const handleShuffle = async () => {
     setIsBtnLoading(true)
     const no = random()
-    setWish(wishList[no].wishe)
+    console.log(no)
+    console.log(wishList)
+    setWish(wishList[no]?.wishe)
     setIsBtnLoading(false)
   }
 
   const handleTag = async (e) => {
     setTag(e.target.value)
     if (e.target.value) {
-      const res = await fetchWishes(e.target.value)
-      if (res.length) {
-        setWishList(res)
-      }
+      const res = result.filter((item) => item.tag === e.target.value)
+      setWishList(res)
     } else {
       setWishList(result)
     }
@@ -105,7 +105,7 @@ export default function Info({ result }) {
         name +
         ' by organizing a birthday event on ' +
         dateString +
-        '.',
+        '.\n',
       url: 'https://timeborn.vercel.app',
     }
     if (navigator.canShare(shareData)) {
