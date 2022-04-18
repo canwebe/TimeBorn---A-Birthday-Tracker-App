@@ -6,6 +6,7 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <meta name='theme-color' content='#90d098' />
+
           <meta
             name='description'
             content='It is a birthday tracker app with added features like birthday wishes,notify events,searching friends and many more.'
@@ -36,6 +37,10 @@ class MyDocument extends Document {
           <meta
             property='og:image'
             content='https://timeborn.vercel.app/logo512.png'
+          />
+          <meta
+            name='google-site-verification'
+            content='76C2hWhD9MhyJAHhDRqU-1zoKf3sK3pSFZxhqnXmRo4'
           />
           <link rel='preconnect' href='https://fonts.googleapis.com' />
           <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin />
