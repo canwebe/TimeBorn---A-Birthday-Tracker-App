@@ -50,7 +50,6 @@ export default function AddTrackerModal({ setIsModal, uid, handleData }) {
           value={name}
           onChange={(e) => setName(e.target.value)}
           type='text'
-          autoFocus
           name='name'
           placeholder='Enter Name'
           required

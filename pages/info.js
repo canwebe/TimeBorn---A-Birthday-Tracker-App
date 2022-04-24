@@ -17,7 +17,17 @@ import AddNotes from '../components/addNotes'
 import BackBtn from '../components/backBtn'
 import { gifts } from '../data/data'
 import Image from 'next/image'
-import { AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+
+const mainVariant = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: { ease: 'easeInOut' },
+  },
+}
 
 export default function Info({ result }) {
   const router = useRouter()
@@ -138,7 +148,12 @@ export default function Info({ result }) {
   }, [audio])
 
   return (
-    <div className='wrapper'>
+    <motion.div
+      className='wrapper'
+      variants={mainVariant}
+      initial='hidden'
+      animate='visible'
+    >
       <div className={styles.infoPage}>
         <div className={styles.infoBox}>
           {isLoading ? (
@@ -258,7 +273,7 @@ export default function Info({ result }) {
           </Modal>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   )
 }
 

@@ -7,6 +7,17 @@ import styles from '../styles/Login.module.css'
 import { FcGoogle } from 'react-icons/fc'
 import { checkNewUser, userDataEdit } from '../helpers/firebase'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
+
+const mainVariant = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: { ease: 'easeInOut' },
+  },
+}
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false)
@@ -44,7 +55,7 @@ export default function Login() {
   }, [user])
 
   return (
-    <>
+    <motion.div variants={mainVariant} initial='hidden' animate='visible'>
       <div className={styles.clipImg}>
         <Image
           src='/clipart.png'
@@ -79,6 +90,6 @@ export default function Login() {
           </button>
         </div>
       </div>
-    </>
+    </motion.div>
   )
 }

@@ -64,7 +64,7 @@
 }
 
 .logOut {
-  margin: auto auto 30px;
+  margin: auto auto 19px;
   width: 80%;
   text-align: center;
   padding: 9px 5px;
@@ -74,4 +74,18 @@
   background-color: var(--color-orange);
   border-radius: 5px;
   border-bottom: 2px solid #d84646;
+}
+
+.footer {
+  padding: 10px;
+  text-align: center;
+  font-size: 0.81rem;
+  opacity: 0.57;
+  border-top: 1px solid #ccc;
+  word-spacing: 3px;
+}
+
+.cwb {
+  color: orangered;
+  font-weight: 600;
 }

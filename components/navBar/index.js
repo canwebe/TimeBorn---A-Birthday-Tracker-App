@@ -101,6 +101,17 @@ export default function NavBar() {
             >
               {isLoading ? 'Loading' : 'Sign Out'}
             </button>
+            <div className={styles.footer}>
+              Developed by{' '}
+              <a
+                href='http://canwebe.netlify.app'
+                target='_blank'
+                rel='noopener noreferrer'
+                className={styles.cwb}
+              >
+                CanWeBe!
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

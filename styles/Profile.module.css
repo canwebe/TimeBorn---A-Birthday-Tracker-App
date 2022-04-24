@@ -59,6 +59,7 @@
 .edit {
   margin-right: -10px;
   font-size: 1.4rem;
+  cursor: pointer;
 }
 
 .editDob {

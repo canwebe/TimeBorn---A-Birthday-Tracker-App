@@ -1,6 +1,6 @@
 import styles from '../styles/Profile.module.css'
 import { useAuth } from '../contexts/authContext'
-import { MdModeEdit } from 'react-icons/md'
+import { MdModeEdit, MdOutlineClose } from 'react-icons/md'
 import Image from 'next/image'
 import {
   fetchUserData,
@@ -12,12 +12,22 @@ import { useEffect, useState } from 'react'
 import { months } from '../data/data'
 import FriendCard from '../components/friendCard'
 import SkeletonProfile from '../components/skeleton/skeletoonProfile'
+import { motion } from 'framer-motion'
 
+const mainVariant = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: { ease: 'easeInOut' },
+  },
+}
 export default function Profile() {
   const { user } = useAuth()
   const [day, setDay] = useState('')
   const [month, setMonth] = useState('1')
-  const [name, setName] = useState('')
+  const [name, setName] = useState(user?.displayName)
   const [isDob, setIsDob] = useState(false)
   const [isName, setIsName] = useState(false)
   const [dobWait, setDobWait] = useState(false)
@@ -102,10 +112,14 @@ export default function Profile() {
   }, [])
 
   return (
-    <div className='wrapper'>
+    <motion.div
+      className='wrapper'
+      variants={mainVariant}
+      animate='visible'
+      initial='hidden'
+    >
       <div className={styles.profile}>
         <h1 className={styles.heading}>My Profile</h1>
-
         {isLoading ? (
           <SkeletonProfile />
         ) : (
@@ -121,11 +135,18 @@ export default function Profile() {
               />
             </div>
             <p className={styles.name}>
-              {user?.displayName}{' '}
-              <MdModeEdit
-                onClick={() => setIsName((prev) => !prev)}
-                className={styles.edit}
-              />
+              {user?.displayName}
+              {isName ? (
+                <MdOutlineClose
+                  onClick={() => setIsName((prev) => !prev)}
+                  className={styles.edit}
+                />
+              ) : (
+                <MdModeEdit
+                  onClick={() => setIsName((prev) => !prev)}
+                  className={styles.edit}
+                />
+              )}
             </p>
             {isName && (
               <form onSubmit={handleNameEdit} className={styles.editDob}>
@@ -148,10 +169,17 @@ export default function Profile() {
             {date ? (
               <p className={styles.dob}>
                 <span className={styles.dobSpan}>DOB :</span> {date}{' '}
-                <MdModeEdit
-                  onClick={() => setIsDob((prev) => !prev)}
-                  className={styles.edit}
-                />
+                {isDob ? (
+                  <MdOutlineClose
+                    onClick={() => setIsDob((prev) => !prev)}
+                    className={styles.edit}
+                  />
+                ) : (
+                  <MdModeEdit
+                    onClick={() => setIsDob((prev) => !prev)}
+                    className={styles.edit}
+                  />
+                )}
               </p>
             ) : (
               <button
@@ -213,7 +241,6 @@ export default function Profile() {
                   onChange={handleSearch}
                   value={searchString}
                 />
-
                 <div className={styles.friendListWrapper}>
                   {searchString
                     ? filterList.map((item, i) => (
@@ -246,6 +273,6 @@ export default function Profile() {
           </>
         )}
       </div>
-    </div>
+    </motion.div>
   )
 }

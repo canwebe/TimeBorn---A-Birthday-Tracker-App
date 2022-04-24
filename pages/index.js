@@ -25,6 +25,7 @@ const Home = () => {
   const [overflow, setOverflow] = useState(false)
   const { user } = useAuth()
   const { data, loading } = useTrackers(user?.uid)
+  console.log(data, loading)
   //Times
   const sec = 1000
   const min = sec * 60
@@ -36,9 +37,12 @@ const Home = () => {
   const currentYear = new Date().getFullYear()
 
   const handleData = async () => {
+    console.log('Run')
     try {
       if (!loading) {
+        console.log('iNSIDE lOADING')
         let isBirthday = false
+        console.log(data)
         if (data?.length) {
           const newData = data.map((item) => {
             isBirthday = false
@@ -99,7 +103,7 @@ const Home = () => {
   // Side Effect
   useEffect(() => {
     handleData()
-  }, [data])
+  }, [data, loading])
 
   return (
     <div className='wrapper'>
