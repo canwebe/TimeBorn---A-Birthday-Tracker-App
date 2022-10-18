@@ -31,6 +31,12 @@ a {
   margin: 0;
   user-select: none;
 }
+
+input,
+textarea {
+  user-select: text !important;
+}
+
 html {
   scroll-behavior: smooth;
   height: 100%;
