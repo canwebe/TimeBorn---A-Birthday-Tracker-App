@@ -104,7 +104,7 @@ export default function NavBar() {
             <div className={styles.footer}>
               Developed by{' '}
               <a
-                href='http://canwebe.netlify.app'
+                href='https://www.canwebe.in'
                 target='_blank'
                 rel='noopener noreferrer'
                 className={styles.cwb}
